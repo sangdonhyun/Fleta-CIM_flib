@@ -1,0 +1,468 @@
+2021-05-28 16:02:07,316 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:07,316 ERROR sms send tel no :01012345678
+2021-05-28 16:02:07,316 ERROR {'vc_vcenter': '121.170.193.209', 'esx_uuid': '238c3fe4-3a77-11e2-81e9-6cae8b62d8d2', 'ping_status': 'False', 'status_date': '2021-05-28 16:01:47', 'esx_ip': '10.10.10.10', 'desc': 'new esx host ip:'}
+2021-05-28 16:02:07,318 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:07,318 ERROR sms send tel no :01042420660
+2021-05-28 16:02:07,318 ERROR {'vc_vcenter': '121.170.193.209', 'esx_uuid': '238c3fe4-3a77-11e2-81e9-6cae8b62d8d2', 'ping_status': 'False', 'status_date': '2021-05-28 16:01:47', 'esx_ip': '10.10.10.10', 'desc': 'new esx host ip:'}
+2021-05-28 16:02:07,319 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:07,319 ERROR sms send tel no :01012345678
+2021-05-28 16:02:07,319 ERROR {'vc_vcenter': '121.170.193.209', 'esx_uuid': '73ef6d84-3a91-11e2-80ab-6cae8b62c58a', 'ping_status': 'False', 'status_date': '2021-05-28 16:01:47', 'esx_ip': '10.10.10.11', 'desc': 'new esx host ip:'}
+2021-05-28 16:02:07,319 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:07,319 ERROR sms send tel no :01042420660
+2021-05-28 16:02:07,319 ERROR {'vc_vcenter': '121.170.193.209', 'esx_uuid': '73ef6d84-3a91-11e2-80ab-6cae8b62c58a', 'ping_status': 'False', 'status_date': '2021-05-28 16:01:47', 'esx_ip': '10.10.10.11', 'desc': 'new esx host ip:'}
+2021-05-28 16:02:11,131 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,131 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,131 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : W_2016_restapi_68 , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOn 
+2021-05-28 16:02:11,132 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,132 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,132 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : W_2016_restapi_68 , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOn 
+2021-05-28 16:02:11,132 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,132 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,134 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : FLETA_FPIM_DEMO , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOn 
+2021-05-28 16:02:11,134 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,134 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,134 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : FLETA_FPIM_DEMO , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOn 
+2021-05-28 16:02:11,134 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,134 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,134 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : HMC , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOff 
+2021-05-28 16:02:11,134 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,134 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,134 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : HMC , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOff 
+2021-05-28 16:02:11,135 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,135 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,135 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : Linux_Redhat7.2_60 , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOff 
+2021-05-28 16:02:11,137 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,137 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,137 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : Linux_Redhat7.2_60 , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOff 
+2021-05-28 16:02:11,137 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,137 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,137 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : HMC_v7 , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOff 
+2021-05-28 16:02:11,138 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,138 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,138 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : HMC_v7 , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOff 
+2021-05-28 16:02:11,138 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,138 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,138 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : HYNIX , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOff 
+2021-05-28 16:02:11,138 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,140 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,140 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : HYNIX , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOff 
+2021-05-28 16:02:11,140 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,140 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,140 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : vCenter , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOn 
+2021-05-28 16:02:11,141 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,141 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,141 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : vCenter , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOn 
+2021-05-28 16:02:11,141 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,141 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,141 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : Linux_Redhat7.8_78 , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOff 
+2021-05-28 16:02:11,141 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,141 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,141 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : Linux_Redhat7.8_78 , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOff 
+2021-05-28 16:02:11,142 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,142 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,142 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : windows_2016_python , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOff 
+2021-05-28 16:02:11,142 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,142 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,142 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : windows_2016_python , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOff 
+2021-05-28 16:02:11,144 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,144 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,144 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : w_2016_demo_v8 , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOff 
+2021-05-28 16:02:11,145 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,145 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,145 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : w_2016_demo_v8 , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOff 
+2021-05-28 16:02:11,147 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,147 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,147 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : FLETA , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOff 
+2021-05-28 16:02:11,148 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,148 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,148 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : FLETA , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOff 
+2021-05-28 16:02:11,148 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,148 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,148 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : Linux_Redhat5.8_58 , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOff 
+2021-05-28 16:02:11,148 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,148 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,148 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : Linux_Redhat5.8_58 , v-center : 121.170.193.209, ESX : 10.10.10.11)  poweredOff 
+2021-05-28 16:02:11,150 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,150 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,150 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : solaris11 , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOff 
+2021-05-28 16:02:11,150 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,150 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,150 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : solaris11 , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOff 
+2021-05-28 16:02:11,151 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,151 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,151 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : w_2016_template_demo , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOff 
+2021-05-28 16:02:11,151 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,151 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,151 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : w_2016_template_demo , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOff 
+2021-05-28 16:02:11,151 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,151 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,151 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : Woo_81 , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOn 
+2021-05-28 16:02:11,153 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,153 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,153 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : Woo_81 , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOn 
+2021-05-28 16:02:11,154 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,154 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,154 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : solaris 11 , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOn 
+2021-05-28 16:02:11,154 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,154 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,154 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : solaris 11 , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOn 
+2021-05-28 16:02:11,154 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,154 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,154 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : w_2016_dev_100_20200311 , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOff 
+2021-05-28 16:02:11,155 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,155 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,155 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : w_2016_dev_100_20200311 , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOff 
+2021-05-28 16:02:11,155 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,155 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,155 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : KEPCO , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOff 
+2021-05-28 16:02:11,157 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,157 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,157 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : KEPCO , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOff 
+2021-05-28 16:02:11,157 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,157 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,157 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : Woo_80 , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOn 
+2021-05-28 16:02:11,157 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,157 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,157 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : Woo_80 , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOn 
+2021-05-28 16:02:11,158 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,158 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,158 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : FPIM_TEST01 , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOff 
+2021-05-28 16:02:11,158 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,158 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,160 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : FPIM_TEST01 , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOff 
+2021-05-28 16:02:11,160 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,160 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,160 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : W_2016_python_dev_99 , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOff 
+2021-05-28 16:02:11,161 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,161 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,161 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : W_2016_python_dev_99 , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOff 
+2021-05-28 16:02:11,161 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,161 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,161 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : w_2016_restapi_rep , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOff 
+2021-05-28 16:02:11,161 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,161 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,161 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : w_2016_restapi_rep , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOff 
+2021-05-28 16:02:11,163 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,163 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,163 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : KODIT , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOff 
+2021-05-28 16:02:11,163 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,163 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,163 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : KODIT , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOff 
+2021-05-28 16:02:11,164 ERROR sms send user :È«±æµ¿
+2021-05-28 16:02:11,164 ERROR sms send tel no :01012345678
+2021-05-28 16:02:11,164 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : W_XP_console_emc_56 , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOn 
+2021-05-28 16:02:11,164 ERROR sms send user :Çö»óµ·
+2021-05-28 16:02:11,164 ERROR sms send tel no :01042420660
+2021-05-28 16:02:11,164 ERROR [MXG SMS] vmweare Server Alert: new vm geuset (vm name : W_XP_console_emc_56 , v-center : 121.170.193.209, ESX : 10.10.10.10)  poweredOn 
+2021-05-28 17:27:49,561 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:49,561 ERROR sms send tel no :01012345678
+2021-05-28 17:27:49,561 ERROR {'vc_vcenter': '121.170.193.209', 'esx_uuid': '238c3fe4-3a77-11e2-81e9-6cae8b62d8d2', 'ping_status': 'False', 'status_date': '2021-05-28 17:27:29', 'esx_ip': '10.10.10.10', 'desc': 'new esx host ip:'}
+2021-05-28 17:27:49,561 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:49,561 ERROR sms send tel no :01042420660
+2021-05-28 17:27:49,561 ERROR {'vc_vcenter': '121.170.193.209', 'esx_uuid': '238c3fe4-3a77-11e2-81e9-6cae8b62d8d2', 'ping_status': 'False', 'status_date': '2021-05-28 17:27:29', 'esx_ip': '10.10.10.10', 'desc': 'new esx host ip:'}
+2021-05-28 17:27:49,561 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:49,561 ERROR sms send tel no :01012345678
+2021-05-28 17:27:49,561 ERROR {'vc_vcenter': '121.170.193.209', 'esx_uuid': '73ef6d84-3a91-11e2-80ab-6cae8b62c58a', 'ping_status': 'False', 'status_date': '2021-05-28 17:27:29', 'esx_ip': '10.10.10.11', 'desc': 'new esx host ip:'}
+2021-05-28 17:27:49,561 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:49,561 ERROR sms send tel no :01042420660
+2021-05-28 17:27:49,561 ERROR {'vc_vcenter': '121.170.193.209', 'esx_uuid': '73ef6d84-3a91-11e2-80ab-6cae8b62c58a', 'ping_status': 'False', 'status_date': '2021-05-28 17:27:29', 'esx_ip': '10.10.10.11', 'desc': 'new esx host ip:'}
+2021-05-28 17:27:53,256 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,256 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,256 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : W_2016_restapi_68 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOn-> poweredOn
+2021-05-28 17:27:53,256 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,256 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,256 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : W_2016_restapi_68 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOn-> poweredOn
+2021-05-28 17:27:53,256 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,256 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,256 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : FLETA_FPIM_DEMO , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOn-> poweredOn
+2021-05-28 17:27:53,256 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,256 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,256 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : FLETA_FPIM_DEMO , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOn-> poweredOn
+2021-05-28 17:27:53,256 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,256 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,256 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : HMC , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,256 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,256 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,256 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : HMC , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,256 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,256 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,256 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Linux_Redhat7.2_60 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,256 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,256 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,256 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Linux_Redhat7.2_60 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,256 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,256 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,256 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : HMC_v7 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,256 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,256 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,256 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : HMC_v7 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,256 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,256 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : HYNIX , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,272 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,272 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : HYNIX , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,272 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,272 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : vCenter , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOn-> poweredOn
+2021-05-28 17:27:53,272 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,272 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : vCenter , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOn-> poweredOn
+2021-05-28 17:27:53,272 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,272 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Linux_Redhat7.8_78 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,272 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,272 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Linux_Redhat7.8_78 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,272 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,272 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : windows_2016_python , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,272 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,272 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : windows_2016_python , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,272 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,272 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : w_2016_demo_v8 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,272 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,272 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : w_2016_demo_v8 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,272 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,272 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : FLETA , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,272 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,272 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : FLETA , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,272 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,272 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Linux_Redhat5.8_58 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,272 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,272 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Linux_Redhat5.8_58 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,272 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,272 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : solaris11 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,272 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,272 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : solaris11 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,272 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,272 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : w_2016_template_demo , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,272 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,272 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : w_2016_template_demo , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,272 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,272 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Woo_81 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOn-> poweredOn
+2021-05-28 17:27:53,272 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,272 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Woo_81 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOn-> poweredOn
+2021-05-28 17:27:53,272 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,272 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,272 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : solaris 11 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOn-> poweredOn
+2021-05-28 17:27:53,288 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,288 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,288 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : solaris 11 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOn-> poweredOn
+2021-05-28 17:27:53,288 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,288 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,288 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : w_2016_dev_100_20200311 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,288 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,288 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,288 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : w_2016_dev_100_20200311 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,288 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,288 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,288 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : KEPCO , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,288 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,288 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,288 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : KEPCO , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,288 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,288 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,288 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Woo_80 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOn-> poweredOn
+2021-05-28 17:27:53,288 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,288 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,288 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Woo_80 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOn-> poweredOn
+2021-05-28 17:27:53,288 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,288 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,288 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : FPIM_TEST01 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,288 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,288 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,288 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : FPIM_TEST01 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,288 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,288 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,288 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : W_2016_python_dev_99 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,288 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,288 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,288 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : W_2016_python_dev_99 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,288 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,288 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,288 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : w_2016_restapi_rep , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,288 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,288 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,288 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : w_2016_restapi_rep , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,288 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,288 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,288 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : KODIT , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,288 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,288 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,288 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : KODIT , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:27:53,288 ERROR sms send user :È«±æµ¿
+2021-05-28 17:27:53,288 ERROR sms send tel no :01012345678
+2021-05-28 17:27:53,288 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : W_XP_console_emc_56 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOn-> poweredOn
+2021-05-28 17:27:53,288 ERROR sms send user :Çö»óµ·
+2021-05-28 17:27:53,288 ERROR sms send tel no :01042420660
+2021-05-28 17:27:53,288 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : W_XP_console_emc_56 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOn-> poweredOn
+2021-05-28 17:29:11,868 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:11,868 ERROR sms send tel no :01012345678
+2021-05-28 17:29:11,868 ERROR {'vc_vcenter': '121.170.193.209', 'esx_uuid': '238c3fe4-3a77-11e2-81e9-6cae8b62d8d2', 'ping_status': 'False', 'status_date': '2021-05-28 17:28:51', 'esx_ip': '10.10.10.10', 'desc': 'new esx host ip:'}
+2021-05-28 17:29:11,868 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:11,868 ERROR sms send tel no :01042420660
+2021-05-28 17:29:11,868 ERROR {'vc_vcenter': '121.170.193.209', 'esx_uuid': '238c3fe4-3a77-11e2-81e9-6cae8b62d8d2', 'ping_status': 'False', 'status_date': '2021-05-28 17:28:51', 'esx_ip': '10.10.10.10', 'desc': 'new esx host ip:'}
+2021-05-28 17:29:11,868 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:11,868 ERROR sms send tel no :01012345678
+2021-05-28 17:29:11,868 ERROR {'vc_vcenter': '121.170.193.209', 'esx_uuid': '73ef6d84-3a91-11e2-80ab-6cae8b62c58a', 'ping_status': 'False', 'status_date': '2021-05-28 17:28:51', 'esx_ip': '10.10.10.11', 'desc': 'new esx host ip:'}
+2021-05-28 17:29:11,868 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:11,868 ERROR sms send tel no :01042420660
+2021-05-28 17:29:11,868 ERROR {'vc_vcenter': '121.170.193.209', 'esx_uuid': '73ef6d84-3a91-11e2-80ab-6cae8b62c58a', 'ping_status': 'False', 'status_date': '2021-05-28 17:28:51', 'esx_ip': '10.10.10.11', 'desc': 'new esx host ip:'}
+2021-05-28 17:29:15,648 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,648 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,648 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : W_2016_restapi_68 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOn-> poweredOn
+2021-05-28 17:29:15,648 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,648 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,648 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : W_2016_restapi_68 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOn-> poweredOn
+2021-05-28 17:29:15,648 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,648 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,648 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : FLETA_FPIM_DEMO , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOn-> poweredOn
+2021-05-28 17:29:15,648 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,648 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,648 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : FLETA_FPIM_DEMO , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOn-> poweredOn
+2021-05-28 17:29:15,648 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,648 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,648 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : HMC , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,648 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,648 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,648 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : HMC , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,648 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,648 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,648 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Linux_Redhat7.2_60 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,648 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,648 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,648 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Linux_Redhat7.2_60 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,648 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,648 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,648 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : HMC_v7 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,648 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,648 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,648 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : HMC_v7 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,648 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,648 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,648 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : HYNIX , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,648 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,648 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,648 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : HYNIX , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,648 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,648 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,648 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : vCenter , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOn-> poweredOn
+2021-05-28 17:29:15,648 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,648 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,648 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : vCenter , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOn-> poweredOn
+2021-05-28 17:29:15,648 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,648 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,648 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Linux_Redhat7.8_78 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,664 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,664 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Linux_Redhat7.8_78 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,664 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,664 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : windows_2016_python , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,664 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,664 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : windows_2016_python , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,664 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,664 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : w_2016_demo_v8 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,664 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,664 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : w_2016_demo_v8 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,664 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,664 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : FLETA , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,664 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,664 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : FLETA , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,664 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,664 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Linux_Redhat5.8_58 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,664 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,664 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Linux_Redhat5.8_58 , v-center : 121.170.193.209, ESX : 10.10.10.11) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,664 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,664 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : solaris11 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,664 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,664 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : solaris11 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,664 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,664 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : w_2016_template_demo , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,664 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,664 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : w_2016_template_demo , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,664 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,664 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Woo_81 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOn-> poweredOn
+2021-05-28 17:29:15,664 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,664 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Woo_81 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOn-> poweredOn
+2021-05-28 17:29:15,664 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,664 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : solaris 11 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOn-> poweredOn
+2021-05-28 17:29:15,664 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,664 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : solaris 11 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOn-> poweredOn
+2021-05-28 17:29:15,664 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,664 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : w_2016_dev_100_20200311 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,664 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,664 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : w_2016_dev_100_20200311 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,664 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,664 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : KEPCO , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,664 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,664 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : KEPCO , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,664 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,664 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Woo_80 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOn-> poweredOn
+2021-05-28 17:29:15,664 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,664 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,664 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : Woo_80 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOn-> poweredOn
+2021-05-28 17:29:15,680 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,680 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,680 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : FPIM_TEST01 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,680 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,680 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,680 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : FPIM_TEST01 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,680 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,680 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,680 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : W_2016_python_dev_99 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,680 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,680 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,680 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : W_2016_python_dev_99 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,680 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,680 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,680 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : w_2016_restapi_rep , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,680 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,680 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,680 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : w_2016_restapi_rep , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,680 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,680 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,680 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : KODIT , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,680 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,680 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,680 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : KODIT , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOff-> poweredOff
+2021-05-28 17:29:15,680 ERROR sms send user :È«±æµ¿
+2021-05-28 17:29:15,680 ERROR sms send tel no :01012345678
+2021-05-28 17:29:15,680 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : W_XP_console_emc_56 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOn-> poweredOn
+2021-05-28 17:29:15,680 ERROR sms send user :Çö»óµ·
+2021-05-28 17:29:15,680 ERROR sms send tel no :01042420660
+2021-05-28 17:29:15,680 ERROR [MXG SMS] vmweare Server Alert: vm geuset (vm name : W_XP_console_emc_56 , v-center : 121.170.193.209, ESX : 10.10.10.10) power status has changed poweredOn-> poweredOn

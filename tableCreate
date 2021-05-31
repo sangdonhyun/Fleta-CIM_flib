@@ -1,0 +1,77 @@
+-- Sequence: monitor.perform_stg_avg_seq_no_seq
+
+-- DROP SEQUENCE monitor.perform_stg_avg_seq_no_seq;
+
+CREATE SEQUENCE monitor.perform_stg_avg_seq_no_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE monitor.perform_stg_avg_seq_no_seq
+  OWNER TO webuser;
+
+-- Function: monitor.perform_stg_avg_insert_trigger()
+
+-- DROP FUNCTION monitor.perform_stg_avg_insert_trigger();
+
+CREATE OR REPLACE FUNCTION monitor.perform_stg_avg_insert_trigger()
+  RETURNS trigger AS
+$BODY$
+BEGIN
+    INSERT INTO monitor.perform_stg_avg_y2025m06d10 VALUES (NEW.*);
+    RETURN NULL;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION monitor.perform_stg_avg_insert_trigger()
+  OWNER TO webuser;
+
+-- Table: monitor.perform_stg_avg
+
+-- DROP TABLE monitor.perform_stg_avg;
+
+CREATE TABLE monitor.perform_stg_avg
+(
+  seq_no bigserial NOT NULL,
+  ins_date date NOT NULL,
+  check_date character varying(30) NOT NULL,
+  ctrl_unum character varying(100) NOT NULL,
+  flag_nm character varying(50) NOT NULL,
+  cols_nm character varying(100) NOT NULL,
+  cols_max_date character varying(100) NOT NULL,
+  cols_value_max character varying(100) NOT NULL,
+  cols_value_avg character varying(100) NOT NULL,
+  CONSTRAINT pk_perform_stg_avg UNIQUE (check_date, ctrl_unum, flag_nm, cols_nm)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE monitor.perform_stg_avg
+  OWNER TO webuser;
+
+  
+  -- Table: monitor.perform_stg_avg_y2019m01d10
+
+-- DROP TABLE monitor.perform_stg_avg_y2019m01d10;
+
+CREATE TABLE monitor.perform_stg_avg_y2019m01d10
+(
+  seq_no bigint NOT NULL DEFAULT nextval('monitor.perform_stg_avg_seq_no_seq'::regclass),
+  ins_date date NOT NULL,
+  check_date character varying(30) NOT NULL,
+  ctrl_unum character varying(100) NOT NULL,
+  flag_nm character varying(50) NOT NULL,
+  cols_nm character varying(100) NOT NULL,
+  cols_value_max character varying(100) NOT NULL,
+  cols_value_avg character varying(100) NOT NULL,
+  CONSTRAINT y2019m01d10 CHECK (ins_date >= '2019-01-01'::date AND ins_date < '2019-01-31'::date)
+)
+INHERITS (monitor.perform_stg_avg)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE monitor.perform_stg_avg_y2019m01d10
+  OWNER TO webuser;
+  

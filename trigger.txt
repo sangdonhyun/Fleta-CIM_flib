@@ -1,0 +1,5 @@
+CREATE TRIGGER insert_perform_stg_avg_insert_trigger
+  BEFORE INSERT
+  ON monitor.perform_stg_avg
+  FOR EACH ROW
+  EXECUTE PROCEDURE monitor.perform_stg_avg_insert_trigger();

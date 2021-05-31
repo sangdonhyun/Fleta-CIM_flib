@@ -1,0 +1,88 @@
+
+ -- DROP TABLE vnstatus.vmstatus_guest_status;
+
+CREATE TABLE vmstatus_guest_status
+(
+  status_date character varying(20),
+  vm_uuid character varying(50) PRIMARY KEY,
+  vm_ip character varying(30),
+  
+  vm_name character varying(30),
+  vm_hostname character varying(50),
+  vm_power character varying(12),
+  vc_vcneter character varying(30),
+  vc_hostserver character varying(50),
+   CONSTRAINT vm_uuid_unique UNIQUE (vm_uuid)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE vmstatus_guest_status
+  OWNER TO webuser;
+
+
+
+  create function on_before_insert_vmstatus() returns trigger language plpgsql volatile as $$ begin
+  if exists ( select 1 from vmstatus_guest_status where vm_uuid = new.vm_uuid ) then
+    update vmstatus_guest_status set status_date = new.status_date,vm_power=new.vm_power where vm_uuid = new.vm_uuid;
+    return null;
+    end if;
+  return new;
+  end; $$;
+
+
+  
+create trigger on_before_insert_vmstatus
+  before insert on vmstatus_guest_status for each row execute procedure on_before_insert_vmstatus();
+
+
+
+  INSERT INTO vmstatus_guest_status
+(status_date,vm_uuid,vm_ip,vm_name,vm_hostname,vm_power,vc_vcneter,vc_hostserver) values (
+     '2019-10-08 19:17:33',
+    '564ddfe5-e56f-b340-f03d-7e8f8378e32c',
+    '10.10.10.59',
+    'Linux_Redhat6.7_59',
+    'Redhat6_59',
+    'poweredOn',
+    '10.10.10.64',
+    '10.10.10.11')
+
+select * from     vmstatus_guest_status
+
+
+
+
+
+----------------------------- ESX
+
+
+CREATE TABLE vnstatus.vmstatus_esx_status
+(
+  status_date character varying(20),
+  esx_ip character varying(30) PRIMARY KEY,
+  ping_status character varying(30),
+   CONSTRAINT esx_ip_unique UNIQUE (esx_ip)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE vnstatus.vmstatus_esx_status
+  OWNER TO webuser;
+
+
+
+  create function on_before_insert_esxstatus() returns trigger language plpgsql volatile as $$ begin
+  if exists ( select 1 from vnstatus.vmstatus_esx_status where esx_ip = new.esx_ip ) then
+    update vnstatus.vmstatus_esx_status set status_date = new.status_date,ping_status=new.ping_status where esx_ip = new.esx_ip;
+    return null;
+    end if;
+  return new;
+  end; $$;
+
+
+  
+create trigger on_before_insert_esxstatus
+  before insert on vnstatus.vmstatus_esx_status for each row execute procedure on_before_insert_esxstatus();
+
+select * from vmstatus_esx_status
