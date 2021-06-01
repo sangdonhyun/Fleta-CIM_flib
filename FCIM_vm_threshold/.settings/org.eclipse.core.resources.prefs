@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding/event_oracle.py=UTF8
+encoding/event_send_oracle.py=utf-8
+encoding/fletaDbms.py=cp949
+encoding/fletaSnmp.py=utf-8
+encoding/performlog.py=utf-8
