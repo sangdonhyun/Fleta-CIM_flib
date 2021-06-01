@@ -42,6 +42,8 @@ vcenter_vm_health.py
         event 발생
 
 
+
+
 event_out/get_esx_status.py
     * vm host 의 ping check 값에 --> vnsate.vnstat_esx_status 에 update
 	content = si.RetrieveContent()
@@ -56,3 +58,12 @@ event_out/get_vm_status.py
 	vm guest 의 power 상태의 변화 에 대한 Event (off-> on , on -> off)
 
 
+FCIM_vm_threathhold/vm_threshold.py
+    *SELECT event_id, event_level, vendor_name, model_name, setting_value,
+       enable, serial
+    FROM ref.ref_event_op_setting_value where event_id in (25,26,27)
+
+    (25, 'Warning', '*', '*', ['80%', 'CPU WARNING Threshold'], True, '*')
+    (26, 'Warning', '*', '*', ['70%', 'MEMORY WARNING Threshold'], True, '*')
+    (27, 'Warning', '*', '*', ['70%', 'DISK WARNING Threshold'], True, '*')
+    redis 저장된 값중 임계치 넘은 항목에 대한 Event
