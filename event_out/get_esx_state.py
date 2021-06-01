@@ -218,7 +218,7 @@ class vm_Perform():
             raise SystemExit("Unable to connect to host with supplied info.")
         
         content = si.RetrieveContent()
-        
+
         host_view = content.viewManager.CreateContainerView(content.rootFolder,
                                                             [vim.HostSystem],
                                                             True)

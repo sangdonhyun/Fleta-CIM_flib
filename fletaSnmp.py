@@ -22,7 +22,7 @@ import serial
 
 class Load():
     def __init__(self):
-        cfg = self.get_cfg()
+        self.cfg = self.get_cfg()
 
     def get_cfg(self):
         cfg = ConfigParser.RawConfigParser()
@@ -32,14 +32,10 @@ class Load():
     
     def errSnmpTrapSendV2(self,errDic):
 
-        cfg = ConfigParser.RawConfigParser()
-        cfgFile = 'config\\config.cfg'
-        cfg.read(cfgFile)
-        print os.path.isfile(cfgFile)
-        try:
-            snmp_ip = cfg.get('server', 'snmp_ip')
-        except:
-            snmp_ip = 'localhost'
+
+        snmp_ip = self.cfg.get('server', 'snmp_ip')
+
+
 
         print snmp_ip
         iterator = sendNotification(

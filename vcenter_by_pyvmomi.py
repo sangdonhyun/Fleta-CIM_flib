@@ -365,6 +365,8 @@ class VCenter():
             vmSummary = child.summary
             self.fwrite(str(vmSummary))
             self.fwrite(str(vmSummary.vm.guest))
+
+
     def main(self):
         print self.vcInfo
         title='VNext V-Center'

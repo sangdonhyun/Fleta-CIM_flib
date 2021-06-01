@@ -103,7 +103,7 @@ class vcEvent():
                         errDic['severity']='Alarm'
                         errDic['desc']=alarm.info.description
                         errDic['vendor']='VMware'
-                        errDic['device_type']='vCenter'
+                        errDic['device_type']='VCT'
                         errDic['method'] = 'snmp'
                         errDic['etc'] =alarm.info.systemName
                         print errDic
