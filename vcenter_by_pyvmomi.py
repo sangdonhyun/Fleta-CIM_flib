@@ -91,7 +91,7 @@ class VCenter():
             # Just to prove to ourselves we have that list:
             for dc in datacenters:
                 self.fwrite(str(dc))
-                
+
                 self.fwrite('*'*50+'\n')
                 print dc.name
                 msg='DATA CENTER : %s'%str(dc.name)
@@ -366,6 +366,34 @@ class VCenter():
             self.fwrite(str(vmSummary))
             self.fwrite(str(vmSummary.vm.guest))
 
+    def host_scsi_lun(self,hosts):
+        for host in hosts:
+            self.fwrite(str(host.summary.host))
+            self.fwrite('-'*50)
+            self.fwrite('hostname :{}'.format(host.name))
+            self.fwrite(host.config.storageDevice.multipathInfo)
+
+    def host_hba_info(self,hosts):
+        for host in hosts:
+            self.fwrite(str(host.summary.host))
+            self.fwrite('-'*50)
+            self.fwrite('hostname :{}'.format(host.name))
+            self.fwrite(host.config.storageDevice.hostBusAdapter)
+
+    def dns_hostname(self,hosts):
+        for host in hosts:
+            self.fwrite(str(host.summary.host))
+            self.fwrite('-'*50)
+            self.fwrite('hostname :{}'.format(host.name))
+            self.fwrite(host.config.network.dnsConfig)
+
+    def get_scsi_scsiLun(self,hosts):
+        for host in hosts:
+            self.fwrite(str(host.summary.host))
+            self.fwrite('-'*50)
+            self.fwrite('hostname :{}'.format(host.name))
+            self.fwrite(host.config.storageDevice.scsiLun)
+
 
     def main(self):
         print self.vcInfo
@@ -376,6 +404,8 @@ class VCenter():
         content = si.RetrieveContent()
         hosts=self.GetVMHosts(content)
         vc= si.content.about
+        self.fwrite("###***vCenter Host Spec Info***###")
+        self.dns_hostname(hosts)
         self.fwrite("###***V-Center Info***###")
         self.fwrite(str(vc))
         self.fwrite("###***DATA CENTER***###")
@@ -392,10 +422,16 @@ class VCenter():
         self.GetHostsSwitches(hosts)
         self.fwrite("###***Host HardWare***###")
         self.GetHardware(hosts)
+        self.fwrite("###***vCenter Host scsi lun***###")
+        self.host_scsi_lun(hosts)
+        self.fwrite("###***vCenter Host hba Info***###")
+        self.host_hba_info(hosts)
         self.fwrite("###***VM Guest***###")
         self.AllVm(si)
         self.fwrite("###***VM Guest freeSpace***###")
         self.VMGuestFreeSpace(content)
+        self.fwrite("###***vCenter storage info***###")
+        self.get_scsi_scsiLun(hosts)
         endMsg=self.getEndMsg()
         self.fwrite(endMsg)
         socketClient.SocketSender(FILENAME=self.fileName,DIR='vnext\\vcenter').main()
