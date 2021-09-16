@@ -1,15 +1,29 @@
-cpu.usage.average = % : °£°Ýµ¿¾ÈÀÇ CPU »ç¿ë·® (%) 
-cpu.usagemhz.average = mhz °£°Ýµ¿¾ÈÀÇ CPU »ç¿ë·® (MHz)
-mem.usage.average =mhz
-disk.usage.average = KBps
-disk.read.average = KBps
-disk.write.average = KBps
-net.usage.average = KBps  : °£°Ýµ¿¾ÈÀÇ ³×Æ®¿öÅ© È°¿ë·ü (Àü¼Û¼Óµµ ¹× ¼ö½Å¼Óµµ °áÇÕ)
+íŒŒì¼ 
+	- Fleta-CIM_flib_20210824_source.zip (source íŒŒì¼)
+	- vcenter_info.zip (ì‹¤í–‰íŒŒì¼)
+		vcenter_by_pyvmomi.py 
+		vcenter_m_get.py 
 
 
 
+FCIM base :
+ vcenter_by_pyvmomi.py
+
+vcenter ê°€ ì—¬ëŸ¬ëŒ€ ìžˆì„ê²½ìš° ,
+ venter_m_get.py ==> vcenter_by_pyvmomi.py ë¥¼ thread ë¡œ ì‹¤í–‰
+
+list.cfg íŽ¸ì§‘
+[vcenter1]
+ip=121.170.193.209  <= vcenter IP
+username=administrator@vsphere.local  <= vcneter web console user
+#username=VSPHERE.LOCAL/Administrator <= web console pass
+password=Kes2719!
+#port = 443   <= default
+port = 50000
 
 
+config.cfg
+[server]
+ip=121.170.193.201  <== fleta_recv.exe ê°€ ìˆ˜í–‰ì¤‘ì¸ ì„œë²„ 
+port = 54002         <== fleta_recv.exe PORT (íŒŒì¼ ì „ì†¡ port)
 
-FCIM base : vcenter_by_pyvmomi.py
-FCIM

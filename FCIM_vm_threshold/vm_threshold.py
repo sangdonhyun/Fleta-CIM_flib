@@ -11,6 +11,7 @@ import event_threshold
 import event_send_oracle
 import fletaSnmp
 import time
+import fletaDbms
 
 class vm_threshold():
     def __init__(self):
@@ -23,7 +24,9 @@ class vm_threshold():
         self.uuid_set=self.threshold_each.keys()
         self.ora=event_send_oracle.vmEvent()
         self.snmp = fletaSnmp.Load()
-        
+        self.db = fletaDbms.FletaDb()
+
+        print 'uuid set :',self.uuid_set
         
     
     def get_common_threshold(self):
@@ -56,8 +59,14 @@ class vm_threshold():
             vm_name,vc_name ='unknown',ip
         return vm_name,vc_name
             
-    
-    
+    def get_today_th_list(self):
+        query  ="SELECT serial_number ,tmp FROM EVENT.event_log el  WHERE event_code = 'vm-esx001' AND to_char(log_date,'YYYY-MM-DD') = to_char(now(),'YYYY-MM-DD')"
+        td_list=self.db.getRaw(query)
+        vm_list = list()
+        for td in td_list:
+            vm_list.append([td[0],td[1][0]])
+        return vm_list
+
     def snmp_send(self,smsInfo):
         """
         smsInfo['vm_uuid']
@@ -74,27 +83,26 @@ class vm_threshold():
         errDic['vendor']='VMware'
         errDic['device_type']='VCT'
         errDic['method'] = 'snmp'
-        errDic['etc'] =str(smsInfo)
+        errDic['etc'] = smsInfo['etc']
         
         try:
-#             print errDic
+            print errDic
             self.snmp.errSnmpTrapSend(errDic)
-#             self.snmp.errSnmpTrapSendV3(errDic)
-        except:
-            pass
-            # self.log.error('SNMP SEND ERROR')
-            # self.log.error(str(errDic))
+        except Exception as e:
+            print str(e)
+
     
     def main(self):
         dt=datetime.datetime.now() - datetime.timedelta(minutes=1)
         dt_min=dt.strftime('%Y-%m-%d %H:%M')
         pt="{}*::VM perform real time::*".format(dt_min)
+        print pt
         keys = self.redis.keys(pt)
         print 'cnt :',len(keys)
         event_list=[]
         for key in keys:
             val= self.redis.get(key)
-
+            print 'redis val :',val
             date_time=key.split('::')[0]
             sp = val.split('^^')
             uuid=sp[0]
@@ -112,19 +120,19 @@ class vm_threshold():
                     ev_time= key.split('::')[0]
                     vm_name,vc_name= self.get_vm_name(uuid, ip)
                     msg=self.set_event(vm_name, vc_name, "CPU", cpu, threshold_cpu)
-                    event_list.append([msg,date_time,uuid])
+                    event_list.append([msg,date_time,uuid,'CPU'])
                     
                 if int(float(mem)) > int(threshold_mem):
                     ev_time= key.split('::')[0]
                     vm_name,vc_name= self.get_vm_name(uuid, ip)
                     msg=self.set_event(vm_name, vc_name, "MEMMORY", mem, threshold_mem)
-                    event_list.append([msg,date_time,uuid])
+                    event_list.append([msg,date_time,uuid,'MEMORY'])
                     
                 if int(float(disk)) > int(threshold_disk):
                     ev_time= key.split('::')[0]
                     vm_name,vc_name= self.get_vm_name(uuid, ip)
                     msg=self.set_event(vm_name, vc_name, "DISK", disk, threshold_disk)
-                    event_list.append([msg,date_time,uuid])
+                    event_list.append([msg,date_time,uuid,'DISK'])
                 
             if uuid in self.uuid_set:
                 
@@ -134,19 +142,19 @@ class vm_threshold():
                     ev_time= key.split('::')[0]
                     vm_name,vc_name= self.get_vm_name(uuid, ip)
                     msg=self.set_event(vm_name, vc_name, "CPU", cpu, threshold_cpu)
-                    event_list.append([msg,date_time,uuid])
+                    event_list.append([msg,date_time,uuid,'CPU'])
                     
                 if int(float(mem)) > int(threshold_mem):
                     ev_time= key.split('::')[0]
                     vm_name,vc_name= self.get_vm_name(uuid, ip)
                     msg=self.set_event(vm_name, vc_name, "MEMMORY", cpu, threshold_mem)
-                    event_list.append([msg,date_time,uuid])
+                    event_list.append([msg,date_time,uuid,'MEMORY'])
                     
                 if int(float(disk)) > int(threshold_disk):
                     ev_time= key.split('::')[0]
                     vm_name,vc_name= self.get_vm_name(uuid, ip)
                     msg=self.set_event(vm_name, vc_name, "DISK", cpu, threshold_disk)
-                    event_list.append([msg,date_time,uuid])
+                    event_list.append([msg,date_time,uuid,'DISK'])
                     
             else:
                 com_cpu,com_mem,com_disk=self.get_common_threshold()
@@ -154,33 +162,42 @@ class vm_threshold():
                     ev_time= key.split('::')[0]
                     vm_name,vc_name= self.get_vm_name(uuid, ip)
                     msg=self.set_event(vm_name, vc_name, "CPU", cpu, com_cpu)
-                    event_list.append([msg,date_time,uuid])
+                    event_list.append([msg,date_time,uuid,'CPU'])
                 if int(float(mem)) > com_mem:
                     ev_time= key.split('::')[0]
                     vm_name,vc_name= self.get_vm_name(uuid, ip)
                     msg=self.set_event(vm_name, vc_name, "MEMMORY", cpu, com_cpu)
-                    event_list.append([msg,date_time,uuid])
-                    
+
+                    event_list.append([msg,date_time,uuid,'MEMORY'])
+
                 if int(float(disk)) > com_disk:
                     ev_time= key.split('::')[0]
                     vm_name,vc_name= self.get_vm_name(uuid, ip)
                     msg=self.set_event(vm_name, vc_name, "DISK", cpu, com_cpu)
-                    event_list.append([msg,date_time,uuid])
+                    event_list.append([msg,date_time,uuid,'DISK'])
         
         print 'event count :',len(event_list)
-        for event_msg,date_time,uuid in event_list:
-            print event_msg
-            self.ora.send_event(event_msg)
-            smsInfo ={}
-            smsInfo['vm_uuid']=uuid
-            smsInfo['status_date']=date_time
-            smsInfo['desc']=event_msg
-            smsInfo['severity'] = 'RED'
-            print smsInfo['severity'] 
-            self.snmp_send(smsInfo)
+        vm_today_list = self.get_today_th_list()
+
+        for event_msg,date_time,uuid,etc in event_list:
+
+
+            if [uuid,etc] in vm_today_list:
+                    print 'alleady send in today'
+            else:
+                smsInfo = {}
+                smsInfo['vm_uuid'] = uuid
+                smsInfo['status_date'] = date_time
+                smsInfo['desc'] = event_msg
+                smsInfo['severity'] = 'RED'
+                smsInfo['etc'] = etc
+                self.snmp_send(smsInfo)
+                self.ora.send_event(event_msg)
+
             
 if __name__=="__main__":
-    while True:
-        vm_threshold().main()
-        time.sleep(60)
+    vm_threshold().main()
+    # while True:
+    #     vm_threshold().main()
+    #     time.sleep(60)
             

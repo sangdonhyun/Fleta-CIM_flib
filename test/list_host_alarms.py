@@ -47,7 +47,14 @@ def getWarningAlarm(al,alarmlist):
     return obj
 
 def main():
-    host='10.10.10.64'
+    """
+    [vcenter1]
+ip=121.170.193.209
+username=administrator@vsphere.local
+password=Kes2719!
+port = 50000
+    """
+    host='121.170.193.209'
     user='administrator@vsphere.local'
     pwd='Kes2719!'
     
@@ -55,7 +62,7 @@ def main():
     # Connect to the host without SSL signing
     try:
         si = SmartConnectNoSSL(
-            host=host, user=user, pwd=pwd)
+            host=host, user=user, pwd=pwd,port=5000)
         atexit.register(Disconnect, si)
 
     except IOError as e:

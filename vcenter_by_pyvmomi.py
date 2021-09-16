@@ -7,7 +7,7 @@ Created on 2019. 4. 25.
 import os
 import sys
 import ConfigParser
-from pyVim.connect import SmartConnect, Disconnect
+from pyVim.connect import SmartConnect, Disconnect,SmartConnectNoSSL
 from pyVmomi import vim
 
 import argparse
@@ -16,7 +16,10 @@ import getpass
 import ssl
 import time
 import socketClient
-import humanize
+import re
+
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 
 
@@ -57,21 +60,27 @@ class VCenter():
         return fileName
     
     def getSi(self):
-        host='121.170.193.209'
-        #host=self.vcInfo['ip']
-        user='administrator@vsphere.local'
+        # host='121.170.193.209'
+        host=self.vcInfo['ip']
+        # user='administrator@vsphere.local'
         user=self.vcInfo['username']
-        password='Kes2719!'
+        # password='Kes2719!'
         password=self.vcInfo['password']
-        
+        port = int(self.vcInfo['port'])
         context = None
         if hasattr(ssl, '_create_unverified_context'):
             context = ssl._create_unverified_context()
-            si = SmartConnect(host=host,
+
+            # si = SmartConnect(host=host,
+            #               user=user,
+            #               pwd=password,
+            #               port=port,
+            #               sslContext=context)
+            si = SmartConnectNoSSL(host=host,
                           user=user,
                           pwd=password,
-                          port=50000,
-                          sslContext=context)
+                          port=port)
+
         if not si:
             print("Could not connect to the specified host using specified "
                   "username and password")
@@ -150,13 +159,20 @@ class VCenter():
         hardware = host.hardware
         cpuUsage = stats.overallCpuUsage
         memoryCapacity = hardware.memorySize
-        memoryCapacityInMB = float(hardware.memorySize)/1024
+        try:
+            memoryCapacityInMB = float(hardware.memorySize)/1024
+        except:
+            memoryCapacityInMB = 0
         memoryUsage = stats.overallMemoryUsage
-        freeMemoryPercentage = round(100 - (
-            (float(memoryUsage/1024) / (memoryCapacity/1024/1024/1024)) * 100
-        ),2)
-        freeMemorySpace =round(float(memoryCapacity/1024/1024/1024)-(float(memoryUsage/1024)),2)
-        
+        try:
+            freeMemoryPercentage = round(100 - (
+                (float(memoryUsage/1024) / (memoryCapacity/1024/1024/1024)) * 100
+            ),2)
+            freeMemorySpace =round(float(memoryCapacity/1024/1024/1024)-(float(memoryUsage/1024)),2)
+        except:
+            freeMemoryPercentage = 0
+            freeMemorySpace = 0
+
         msg += "-"*50+'\n'
         msg += str(hardware.cpuInfo)
         msg += str(stats)
@@ -182,12 +198,19 @@ class VCenter():
         msg=''
         
         summary = datastore.summary
+        print dir(summary)
+        name = summary.name.encode('utf-8')
+
+        print name,type(name)
         capacity = summary.capacity
         freeSpace = summary.freeSpace
         uncommittedSpace = summary.uncommitted
-        freeSpacePercentage = (float(freeSpace) / capacity) * 100
+        try:
+            freeSpacePercentage = (float(freeSpace) / capacity) * 100
+        except:
+            freeSpacePercentage = 0
         msg += "-"*50+'\n'
-        msg +=  "Datastore name: %s"%(str(summary.name))+'\n'
+        msg +=  u"Datastore name: %s"%(summary.name)+'\n'
         msg +=  "Capacity: %s"%(capacity)+'\n'
         if uncommittedSpace is not None:
             provisionedSpace = (capacity - freeSpace) + uncommittedSpace
@@ -195,7 +218,7 @@ class VCenter():
         msg+= "Free space: %s"%(freeSpace)+'\n'
         msg+= "Free space percentage: %s "%(freeSpacePercentage)+'\n'
         msg += "-"*50+'\n'
-    
+        print msg
         return msg
     
          
@@ -232,7 +255,14 @@ class VCenter():
             self.fwrite('#datastore : {}'.format(dc.name))
             self.fwrite(dc.summary)
             self.fwrite(dc.host)
-        
+
+    def get_host_vnic(self,hosts):
+
+        for host in hosts:
+            self.fwrite('hostname : {}'.format(host.name))
+            self.fwrite('-'*50)
+            self.fwrite (host.config.network.vnic)
+
     def getEsxiHost(self,si):
         content = si.RetrieveContent()
         objview = content.viewManager.CreateContainerView(content.rootFolder,
@@ -282,10 +312,12 @@ class VCenter():
                 self.fwrite(str(c))
                 self.PrintVmInfo(c, depth + 1)
                 return
-        
-        summary = vm.summary
-        self.fwrite(summary)
-        self.fwrite(vm.config)
+        try:
+            summary = vm.summary
+            self.fwrite(summary)
+            self.fwrite(vm.config)
+        except:
+            pass
 #         if vm.summary.config.uuid=='564d32f4-b1f7-3381-d190-e12fc4453185':
 #             print summary
 #             print summary.config.vmPathName
@@ -294,6 +326,7 @@ class VCenter():
     def AllVm(self,si):
         atexit.register(Disconnect, si)
         content = si.RetrieveContent()
+        vmList = list()
         for child in content.rootFolder.childEntity:
             if hasattr(child, 'vmFolder'):
                 datacenter = child
@@ -303,9 +336,12 @@ class VCenter():
                 for vm in vmList:
 #                     print (vm)
                     self.PrintVmInfo(vm)
+        return vmList
     def fwrite(self,msg,wbit='a'):
 #         print msg
-        msg=unicode(msg)
+#         print msg,type(msg),type(msg) == type('유니코드')
+        if not type(msg) == type('유니코드'):
+            msg=unicode(msg)
         with open(self.fileName,wbit) as fw:
             fw.write(msg+'\n')
     def GetVMHosts(self,content):
@@ -389,14 +425,34 @@ class VCenter():
 
     def get_scsi_scsiLun(self,hosts):
         for host in hosts:
-            self.fwrite(str(host.summary.host))
+
+
             self.fwrite('-'*50)
             self.fwrite('hostname :{}'.format(host.name))
-            self.fwrite(host.config.storageDevice.scsiLun)
+            lun_data = host.config.storageDevice.scsiLun
+            lines = str(lun_data).splitlines()
+            for line in lines:
+                if re.search('block =', line):
+                    self.fwrite(line)
+                if re.search('id =', line):
+                    self.fwrite(line)
 
+    def get_snap_info(self,vm_list):
+        for vm in vm_list:
+            try:
+                rootSnapshots = vm.snapshot.rootSnapshotList
+            except:
+                rootSnapshots = []
+            # print rootSnapshots
+
+            for snapshots in rootSnapshots:
+                print snapshots
+                self.fwrite(snapshots)
+                print '-' * 49
+                # print snapshots.childSnapshotList
 
     def main(self):
-        print self.vcInfo
+        # print self.vcInfo
         title='VNext V-Center'
         headMsg=self.getHeadMsg(title)
         self.fwrite(headMsg,'w')
@@ -416,6 +472,8 @@ class VCenter():
         self.getDataStoreFree(si)
         self.fwrite("###***ESXi HOST***###")
         self.getEsxiHost(si)
+        self.fwrite("###***ESXi HOST VNIC***###")
+        self.get_host_vnic(hosts)
         self.fwrite("###***NETWORK***###")
         self.GetHostsPortgroups(hosts)
         self.fwrite("###***VirtualSwitch***###")
@@ -427,7 +485,9 @@ class VCenter():
         self.fwrite("###***vCenter Host hba Info***###")
         self.host_hba_info(hosts)
         self.fwrite("###***VM Guest***###")
-        self.AllVm(si)
+        vm_list=self.AllVm(si)
+        self.fwrite("###***VM Snap Info***###")
+        self.get_snap_info(vm_list)
         self.fwrite("###***VM Guest freeSpace***###")
         self.VMGuestFreeSpace(content)
         self.fwrite("###***vCenter storage info***###")
@@ -461,7 +521,7 @@ class Manager():
     
     def main(self):
         hostList=self.getHost()
-        print len(hostList)
+
         for host in hostList:
             VCenter(host).main()
 

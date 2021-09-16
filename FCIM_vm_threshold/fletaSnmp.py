@@ -14,7 +14,7 @@ import time
 from time import strftime, localtime, time
 import datetime
 from pysnmp.hlapi import *
-import serial
+# import serial
 
 
 class Load():
@@ -25,13 +25,14 @@ class Load():
             
     def errSnmpTrapSend(self,errDic):
         cfg=ConfigParser.RawConfigParser()
-        cfgFile=os.path.join('config','Perfrom.cfg')
+        cfgFile=os.path.join('config','Perform.cfg')
         cfg.read(cfgFile)
-        print cfg.items('snmp')
+
         try:
+            print cfg.items('snmp')
             snmp_ip=cfg.get('snmp','ip')
         except:
-            snmp_ip='localhost'
+            snmp_ip='121.170.193.217'
         # snmp_ip= '121.170.193.194'
         print 'SNMP IP :',snmp_ip
         
@@ -56,7 +57,7 @@ class Load():
                 ContextData(),
                 'trap',
                 NotificationType(
-                    ObjectIdentity('1.3.6.1.4.1.6485.901'),
+                    ObjectIdentity('1.3.6.1.4.1.6485.1001'),
                 ).addVarBinds(
                     ('1.3.6.1.4.1.6485.1001.0', OctetString(errDic['serial'])),
                     ('1.3.6.1.4.1.6485.1001.1', OctetString(errDic['event_date'])),
@@ -75,7 +76,7 @@ class Load():
             print(errorIndication)
     
             
-    from pysnmp.hlapi import *
+    # from pysnmp.hlapi import *
     def snmpv2(self):
         errorIndication, errorStatus, errorIndex, varBinds = next(
             getCmd(SnmpEngine(),
@@ -164,7 +165,7 @@ class Load():
         errDic['method'] = 'snmp'
         errDic['etc'] ='test'
         print errDic
-        self.errSnmpTrapSendV3(errDic)
+        self.errSnmpTrapSendV(errDic)
         
         
         

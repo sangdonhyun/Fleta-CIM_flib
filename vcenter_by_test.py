@@ -18,6 +18,11 @@ import time
 import socketClient
 import humanize
 import json
+import re
+
+
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 class VCenter():
     def __init__(self,vcInfo):
@@ -48,21 +53,27 @@ class VCenter():
         return msg
     
     def getFileName(self):
-        fn='%s_%s.tmp'%(self.vcInfo['name'],self.vcInfo['ip'])
+        fn='%s_%s_test.tmp'%(self.vcInfo['name'],self.vcInfo['ip'])
         fileName=os.path.join('data',fn)
         return fileName
     
     def getSi(self):
-        host='10.10.10.64'
-        user='administrator@vsphere.local'
-        password='Kes2719!'
-        
+        # host = '121.170.193.209'
+        # user='administrator@vsphere.local'
+        # pwd='Kes2719!'
+        # port=50000
+        user=self.vcInfo['username']
+        host=self.vcInfo['ip']
+        pwd=self.vcInfo['password']
+        port=int(self.vcInfo['port'])
+
         context = None
         if hasattr(ssl, '_create_unverified_context'):
             context = ssl._create_unverified_context()
             si = SmartConnect(host=host,
                           user=user,
-                          pwd=password,
+                          pwd=pwd,
+                          port=port,
                           sslContext=context)
         if not si:
             print("Could not connect to the specified host using specified "
@@ -117,15 +128,21 @@ class VCenter():
                         self.fwrite('-'*50)
                         self.fwrite( host.summary)
                         print host.hardware
+
+
+                        print (str(host.summary.host))
+                        print ('-' * 50)
+                        print ('hostname :{}'.format(host.name))
+                        print (host.config.storageDevice.scsiLun)
+
                 
-                
-                
-                clusters = dc.hostFolder.childEntity
-                for cluster in clusters:
-                    print cluster
-                    print cluster.name
-                    print cluster.summary
-                    sys.exit()
+                #
+                # clusters = dc.hostFolder.childEntity
+                # for cluster in clusters:
+                #     print cluster
+                #     print cluster.name
+                #     print cluster.summary
+                #     sys.exit()
                     
                     
 #                     print dc.val
@@ -211,71 +228,17 @@ class VCenter():
         esxi_hosts = objview.view
         objview.Destroy()
         for esxi_host in esxi_hosts:
-            
-            self.fwrite('esxHost :%s'%esxi_host.name)
-            self.fwrite(str(esxi_host))
-            storage_system = esxi_host.configManager.storageSystem
-#             print storage_system
-            host_file_sys_vol_mount_info = storage_system.fileSystemVolumeInfo.mountInfo
-            for host_mount_info in host_file_sys_vol_mount_info:
-                self.fwrite(str(host_mount_info))
+            pass
         
-        
-        objview = content.viewManager.CreateContainerView(content.rootFolder,
-                                                          [vim.Datastore],
-                                                          True)
-        dcList=objview.view
-        objview.Destroy()
-        print '-'*50
-        
-        for dc in dcList:
-            print 'datastore : ',dc.name
-            print dc.summary
-            print dc.host
-            print dc.vm
-    def getEsxiHost(self,si):
-        content = si.RetrieveContent()
-        objview = content.viewManager.CreateContainerView(content.rootFolder,
-                                                          [vim.HostSystem],
-                                                          True)
-        esxi_hosts = objview.view
-        objview.Destroy()
-        
-        for datacenter in content.rootFolder.childEntity:
-            hostFolder = datacenter.hostFolder
-            computeResourceList = hostFolder.childEntity
-            for computeResource in computeResourceList:
-                self.fwrite(str(computeResource))
-                print computeResource
-                print dir(computeResource)
-                print computeResource.host
-                print computeResource.summary
-                
-                
-                
-                hostList = computeResource.host
-                
-                print "##################################################"
-                print "Compute resource name: ", computeResource.name
-                print "##################################################"
-                for host in hostList:
-#                     print host.summary
-                    print host
-                    print type(host)
-                    print dir(host)
-                    print host.summary
-                    
-                    
-                    self.fwrite(str(host.summary))
-                    self.fwrite(str(host.hardware))
-                    self.fwrite(str(host.config.network.vnic))
-                    jsonString=json.dumps(str(host.summary))
-                    print jsonString
-                    dict = json.loads(jsonString)
-                    print type(dict)
-                    print host.summary.host
-#                     for h in dict['hardware']:
-                        
+
+    def get_host_vnic(self,hosts):
+
+            for host in hosts:
+                print 'hostname :',host.name
+                print '-'*50
+                print (host.config.network.vnic)
+
+
                     
                     
     def PrintVmInfo(self,vm, depth=1):
@@ -326,7 +289,10 @@ class VCenter():
                     self.PrintVmInfo(vm)
     def fwrite(self,msg,wbit='a'):
 #         print msg
-        
+
+        if not type(str(msg)) == type('유니코드'):
+            msg=unicode(str(msg))
+
         with open(self.fileName,wbit) as fw:
             fw.write(str(msg)+'\n')
     def GetVMHosts(self,content):
@@ -337,6 +303,8 @@ class VCenter():
         obj = [host for host in host_view.view]
         host_view.Destroy()
         return obj
+
+
     def GetHostsPortgroups(self,hosts):
         print("Collecting portgroups on all hosts. This may take a while ...")
         hostPgDict = {}
@@ -359,7 +327,45 @@ class VCenter():
             hostSwitchesDict[host] = switches
             self.fwrite(str(switches))
         return hostSwitchesDict
-    
+
+    def getDataStoreFree(self, si):
+        content = si.RetrieveContent()
+        objview = content.viewManager.CreateContainerView(content.rootFolder,
+                                                          [vim.Datastore],
+                                                          True)
+        dcList = objview.view
+        objview.Destroy()
+        self.fwrite('-' * 50)
+        self.fwrite('datastore  count : {}'.format(len(dcList)))
+        self.fwrite('-' * 50)
+
+        for dc in dcList:
+            self.fwrite('#datastore : {}'.format(dc.name))
+            self.fwrite(dc.summary)
+            self.fwrite(dc.host)
+
+    def getEsxiHost(self, si):
+        content = si.RetrieveContent()
+        objview = content.viewManager.CreateContainerView(content.rootFolder,
+                                                          [vim.HostSystem],
+                                                          True)
+        esxi_hosts = objview.view
+        objview.Destroy()
+
+        for datacenter in content.rootFolder.childEntity:
+            hostFolder = datacenter.hostFolder
+            computeResourceList = hostFolder.childEntity
+            for computeResource in computeResourceList:
+                self.fwrite(str(computeResource))
+                print computeResource
+                hostList = computeResource.host
+                print "##################################################"
+                print "Compute resource name: ", computeResource.name
+                print "##################################################"
+                for host in hostList:
+                    self.fwrite(str(host.summary))
+                    self.fwrite(str(host.hardware))
+                    self.fwrite(str(host.config.network.vnic))
     def GetHardware(self,hosts):
                                                            
         for host in hosts:
@@ -372,35 +378,85 @@ class VCenter():
 #             print("Memory:", convertMemory(host.hardware.memorySize))
     def main(self):
         print self.vcInfo
-        title='VNext V-Center'
+        title='FCIM V-Center'
         headMsg=self.getHeadMsg(title)
-        self.fwrite(headMsg,'w')
+        # self.fwrite(headMsg,'w')
         si = self.getSi()
         content = si.RetrieveContent()
+
         hosts=self.GetVMHosts(content)
-        
-        
-        vc= si.content.about
-        self.fwrite("###***V-Center Info***###")
-        self.fwrite(str(vc))
-        self.fwrite("###***DATA CENTER***###")
-        self.getDataCenter(si)
-        self.fwrite("###***datastore***###")
-        self.getDataStore(si)
-        self.fwrite("###***ESXi HOST***###")
-        self.getEsxiHost(si)
-        self.fwrite("###***NETWORK***###")
-        self.GetHostsPortgroups(hosts)
-        self.fwrite("###***VirtualSwitch***###")
-        self.GetHostsSwitches(hosts)
-        self.fwrite("###***Host HardWare***###")
-        self.GetHardware(hosts)
-        self.fwrite("###***VM Guest***###")
-        self.AllVm(si)
-        endMsg=self.getEndMsg()
-        self.fwrite(endMsg)
-#         socketClient.SocketSender(FILENAME=self.fileName,DIR='nasinfo.SCH').main()
-        
+
+        content = si.RetrieveContent()
+        # host = content.searchIndex.FindByDnsName(dnsName="DC0_C0_H0", vmSearch=False)
+        # print content
+        """
+        김은석[eskim] 님의말 : [2021-07-20 16:28:18]
+        hostname :
+        block =
+        id = and  (naa.  or eui. or t10.
+['Item', '__add__', '__class__', '__contains__', '__delattr__', '__delitem__', '__delslice__', '__dict__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getslice__', '__gt__', '__hash__', '__iadd__', '__imul__', '__init__', '__iter__', '__le__', '__len__', '__lt__', '__module__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__rmul__', '__setattr__', '__setitem__', '__setslice__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'append', 'count', 'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']
+        """
+        # self.getDataStoreFree(si)
+        """
+        ['AcquireCimServicesTicket', 'Array', 'ConfigureCryptoKey', 'Destroy', 'Destroy_Task', 'Disconnect', 'DisconnectHost_Task', 'EnableCrypto', 'EnterLockdownMode', 'EnterMaintenanceMode', 'EnterMaintenanceMode_Task', 'EnterStandbyMode', 'ExitLockdownMode', 'ExitMaintenanceMode', 'ExitMaintenanceMode_Task', 'ExitStandbyMode', 'PowerDownHostToStandBy_Task', 'PowerUpHostFromStandBy_Task', 'PrepareCrypto', 'QueryConnectionInfo', 'QueryHostConnectionInfo', 'QueryMemoryOverhead', 'QueryMemoryOverheadEx', 'QueryOverhead', 'QueryOverheadEx', 'QueryProductLockerLocation', 'QueryTpmAttestationReport', 'Reboot', 'RebootHost_Task', 'ReconfigureDAS', 'ReconfigureHostForDAS_Task', 'Reconnect', 'ReconnectHost_Task', 'Reload', 'Rename', 'Rename_Task', 'RetrieveFreeEpcMemory', 'RetrieveHardwareUptime', 'SetCustomValue', 'Shutdown', 'ShutdownHost_Task', 'UpdateFlags', 'UpdateIpmi', 'UpdateProductLockerLocation', 'UpdateProductLockerLocation_Task', 'UpdateSystemResources', 'UpdateSystemSwapConfiguration', '_GetMethodInfo', '_GetMethodList', '_GetMoId', '_GetPropertyInfo', '_GetPropertyList', '_GetServerGuid', '_GetStub', '_InvokeAccessor', '_InvokeMethod', '__class__', '__delattr__', '__dict__', '__doc__', '__eq__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_methodInfo', '_moId', '_propInfo', '_propList', '_serverGuid', '_stub', '_version', '_wsdlName', 'alarmActionsEnabled', 'answerFileValidationResult', 'answerFileValidationState', 'availableField', 'capability', 'complianceCheckResult', 'complianceCheckState', 'config', 'configIssue', 'configManager', 'configStatus', 'customValue', 'datastore', 'datastoreBrowser', 'declaredAlarmState', 'disabledMethod', 'effectiveRole', 'hardware', 'licensableResource', 'name', 'network', 'overallStatus', 'parent', 'permission', 'precheckRemediationResult', 'recentTask', 'remediationResult', 'remediationState', 'runtime', 'setCustomValue', 'summary', 'systemResources', 'tag', 'triggeredAlarmState', 'value', 'vm']
+        """
+        self.getEsxiHost_vnic(hosts)
+        # for host in hosts:
+        #
+        #     print dir(host.summary.host)
+        #     print '-'*50
+        #     print host.summary.host
+        #     print '-'*50
+        #     print 'hostname :',host.name
+        #     # for d in dir(host.config):
+        #     #     print d
+        #     # print host.config.storageDevice.scsiLun
+        #     lun_data = host.config.storageDevice.scsiLun
+        #     #.descriptor.id
+        #     #['Array', '_GetPropertyInfo', '_GetPropertyList', '__class__', '__delattr__', '__dict__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_propInfo', '_propList', '_version', '_wsdlName', 'alternateName', 'canonicalName', 'capabilities', 'capacity', 'clusteredVmdkSupported', 'descriptor', 'deviceName', 'devicePath', 'deviceType', 'displayName', 'durableName', 'dynamicProperty', 'dynamicType', 'emulatedDIXDIFEnabled', 'key', 'localDisk', 'lunType', 'model', 'operationalState', 'perenniallyReserved', 'physicalLocation', 'protocolEndpoint', 'queueDepth', 'revision', 'scsiDiskType', 'scsiLevel', 'serialNumber', 'ssd', 'standardInquiry', 'uuid', 'vStorageSupport', 'vendor', 'vsanDiskInfo']
+        #     print dir(lun_data)
+        #     for lun in lun_data:
+        #         print dir(lun)
+        #         if 'descriptor' in dir(lun):
+        #             print (lun.descriptor)
+        #         if 'capacity' in dir(lun):
+        #             print (lun.capacity)
+            # lines = str(lun_data).splitlines()
+            # for line in lines:
+            #     if re.search('block =',line):
+            #         print line
+            #     if re.match('id =',line):
+            #         print line
+
+
+        # print (host.config.network.dnsConfig)
+            # print (host.config.storageDevice.hostBusAdapter)
+            # print host.config.storageDevice.multipathInfo
+            # print host.SerialAttachedTargetTransport
+            # print host.FibreChannelHba
+            # print host.summary
+
+
+#         self.fwrite("###***V-Center Info***###")
+#         self.fwrite(str(vc))
+#         self.fwrite("###***DATA CENTER***###")
+#         self.getDataCenter(si)
+#         self.fwrite("###***datastore***###")
+#         self.getDataStore(si)
+#         self.fwrite("###***ESXi HOST***###")
+#         self.getEsxiHost(si)
+#         self.fwrite("###***NETWORK***###")
+#         self.GetHostsPortgroups(hosts)
+#         self.fwrite("###***VirtualSwitch***###")
+#         self.GetHostsSwitches(hosts)
+#         self.fwrite("###***Host HardWare***###")
+#         self.GetHardware(hosts)
+#         self.fwrite("###***VM Guest***###")
+#         self.AllVm(si)
+#         endMsg=self.getEndMsg()
+#         self.fwrite(endMsg)
+# #         socketClient.SocketSender(FILENAME=self.fileName,DIR='nasinfo.SCH').main()
+#
 class Manager():
     def __init__(self):
         self.cfg = self.getCFg()
@@ -429,5 +485,18 @@ class Manager():
         for host in hostList:
             VCenter(host).main()
 
+
 if __name__=='__main__':
     Manager().main()
+
+    # si = SmartConnect(
+    #     host='121.170.193.209',
+    #     user='administrator@vsphere.local',
+    #     pwd='Kes2719!',
+    #     port=50000)
+    # # disconnect this thing
+    # atexit.register(Disconnect, si)
+    # uuid ='238c3fe4-3a77-11e2-81e9-6cae8b62d8d2'
+    # search_index = si.content.searchIndex
+    # vm = search_index.FindByUuid(None, uuid, True)
+    # print (vm)

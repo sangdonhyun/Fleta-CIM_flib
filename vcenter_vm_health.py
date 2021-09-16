@@ -23,6 +23,10 @@ import datetime
 class HostAlarm():
     def __init__(self,vcInfo):
         self.vcInfo=vcInfo
+
+    def get_log(self):
+        pass
+
     def GetVMHosts(self,content):
         host_view = content.viewManager.CreateContainerView(content.rootFolder,
                                                             [vim.HostSystem],
@@ -42,33 +46,34 @@ class HostAlarm():
         print host.summary.hardware.uuid
         print host.summary
         for i in health:
+            print '-'*50
             print i.sensorType
             print i.healthState.label
-            # if not i.healthState.label == 'Green':
-
-            errDic={}
-            errDic['serial']=host.name
-            print type(i.timeStamp)
-            try:
-                errDic['event_date']=datetime.datetime.strptime(i.timeStamp,'%Y-%m-%dT%H:%M:%SZ')
-            except:
-                errDic['event_date']=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            errDic['event_code']='%s_helth_check'%i.sensorType
-            errDic['severity']=i.healthState.label
-            msg='%s %s'%(i.name,i.healthState.summary)
-            print 'evnet date ',errDic['event_date']
-            try:
-                currentReading=i.currentReading
-                msg=msg+' currentReading :%s'%currentReading
-            except:
-                pass
-            errDic['desc']=msg
-            errDic['vendor']='VMware'
-            errDic['device_type']='VCT'
-            errDic['method'] = 'snmp'
-            errDic['etc'] ='SENSOR TYPE : %s, ID : %s'%(i.sensorType,i.id)
-            print errDic
-            fletaSnmp.Load().errSnmpTrapSendV2(errDic)
+            print str(i)
+            if not i.healthState.label not in  ('Green','녹색'):
+                errDic={}
+                errDic['serial']=host.name
+                print type(i.timeStamp)
+                try:
+                    errDic['event_date']=datetime.datetime.strptime(i.timeStamp,'%Y-%m-%dT%H:%M:%SZ')
+                except:
+                    errDic['event_date']=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                errDic['event_code']='%s_helth_check'%i.sensorType
+                errDic['severity']=i.healthState.label
+                msg='%s %s'%(i.name,i.healthState.summary)
+                print 'evnet date ',errDic['event_date']
+                try:
+                    currentReading=i.currentReading
+                    msg=msg+' currentReading :%s'%currentReading
+                except:
+                    pass
+                errDic['desc']=msg
+                errDic['vendor']='VMware'
+                errDic['device_type']='VCT'
+                errDic['method'] = 'snmp'
+                errDic['etc'] ='SENSOR TYPE : %s, ID : %s'%(i.sensorType,i.id)
+                print errDic
+                fletaSnmp.Load().errSnmpTrapSendV2(errDic)
                 
                 
     def main(self,):

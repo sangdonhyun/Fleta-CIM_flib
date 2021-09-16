@@ -93,7 +93,9 @@ def _take_template_snapshot(si, vm):
 
 
 def main():
-    args = get_args()
+#    args = get_args()
+
+    host=
 
     urllib3.disable_warnings()
     si = None

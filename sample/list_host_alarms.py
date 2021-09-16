@@ -82,7 +82,7 @@ class HostAlarm():
         return obj
     
     def main(self):
-        host='10.10.10.64'
+        host='121.170.193.209'
         user='administrator@vsphere.local'
         pwd='Kes2719!'
         

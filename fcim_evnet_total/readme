@@ -1,0 +1,6 @@
+1. vcenter alarm event
+2. vcenter event
+3. host haelth check event
+4. guest status event
+5. host threshold event
+6. guest threshold event

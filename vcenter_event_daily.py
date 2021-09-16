@@ -56,7 +56,7 @@ class Event():
                 timestr=f.read()
             dateset=datetime.strptime(timestr, '%Y-%m-%d %H:%M:%S')
         else:
-            dateset=self.now - timedelta(days=1)
+            dateset=self.now - timedelta(days=365)
             
         return dateset
     

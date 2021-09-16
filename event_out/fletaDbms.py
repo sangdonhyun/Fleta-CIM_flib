@@ -11,20 +11,19 @@ import psycopg2
 import ConfigParser
 import codecs
 import locale
-import common
+
 import datetime
+import json
 
 
 
 class FletaDb():
     def __init__(self):
-        self.com = common.Common()
-        self.dec = common.Decode()
 #         self.logger = self.com.flog()
                 
 #         self.conn_string = "host='localhost' dbname='fleta' user='fletaAdmin' password='kes2719!'"
         self.conn_string = self.getConnStr()
-        print self.conn_string
+
         self.cfg = self.getCfg()
         
         
@@ -68,16 +67,9 @@ class FletaDb():
             dbinfo[info] = val
         return dbinfo
     
-    def getNow(self):
-        return self.com.getNow('%Y%m%d%H%M%S')
     
-    
-    def getHistMonth(self):
-        return self.com.getNow('%Y%m%d')
     
     def queryExec(self,query):
-        print query
-        print self.conn_string
         con = None
 #         try:
         con = psycopg2.connect(self.conn_string)
@@ -106,7 +98,7 @@ class FletaDb():
         rows = cursor.fetchall()
         
         if rows == None:
-            self.com.sysOut('Empty result set from query')
+            print 'none'
         
                 
         cursor.close()
@@ -444,9 +436,34 @@ class FletaDb():
         
         return rows
     
-    
+    def set_guest_status(self):
+        j_dict = {}
+
+        i = 0
+        try:
+            conn = psycopg2.connect(self.conn_string)
+            cur = conn.cursor()
+
+        except Exception as e:
+            print str(e)
+            print "unable to connect to the database."
+
+        query = "SELECT * FROM vnstatus.vnstatus_guest_status;"
+        cur.execute(query)
+        try:
+            for row in cur:
+                j_dict[i] = {'ip': row[0], 'Loc': row[1]}
+                i = i + 1
+
+            with open(os.path.join('config','guest_status.txt'), 'w', encoding='utf-8') as file:
+                json.dump(j_dict, file, indent=4)
+        except Exception as e:
+            print str(e)
+        conn.close()
+
     def getList(self,obj):
         conn = None
+        rows = []
         try:
             conn = psycopg2.connect(self.conn_string)
             cur = conn.cursor()
@@ -454,7 +471,7 @@ class FletaDb():
         except:
             print "I am unable to connect to the database."
         query="SELECT * FROM vnstatus.vnstatus_%s_status;"%obj
-        print query
+
         try:
             cur.execute(query)
         except:
@@ -464,7 +481,7 @@ class FletaDb():
         try:
             rows = cur.fetchall()
             if len(rows) == 0:
-                rows = [{}]
+                rows = None
         except:
             pass
         
@@ -486,7 +503,7 @@ class FletaDb():
             esx_ip = esxDic['esx_ip']
             ping_status=esxDic['ping_status']
             vc_vcenter = esxDic['vc_vcenter']
-            print esxDic
+            # print esxDic
 
             uuid = esxDic['esx_uuid']
             query="""
@@ -495,7 +512,7 @@ class FletaDb():
 VALUES('{DATE}', '{UUID}', '{ESX_IP}','PING_STATUS', 'PING_STATUS','{PING_STATUS}', '{VCENTER}');
            
             """.format(DATE=status_date,UUID=uuid,ESX_IP=esx_ip,PING_STATUS=ping_status,VCENTER=vc_vcenter)
-            print query
+            # print query
             cur.execute(query)
         con.commit()
         
@@ -545,7 +562,7 @@ VALUES('{DATE}', '{UUID}', '{ESX_IP}','PING_STATUS', 'PING_STATUS','{PING_STATUS
                 '%s',
                 '%s')
                 """%(status_date,vm_uuid,vm_ip,vm_name,vm_hostname,vm_power,vc_vcenter,vc_hostserver)
-                print query
+                # print query
                 cur.execute(query)
             con.commit()
         except psycopg2.DatabaseError, e:

@@ -54,9 +54,9 @@ class vcEvent():
             f.write(msg+'\n')
     def alarm(self,host,user,passwd):
         
-#         host='10.10.10.64'
-#         user='administrator@vsphere.local'
-#         password='Kes2719!'
+        host='121.170.193.209'
+        user='administrator@vsphere.local'
+        password='Kes2719!'
         
         context = None
         if hasattr(ssl, '_create_unverified_context'):
@@ -64,6 +64,7 @@ class vcEvent():
             si = SmartConnect(host=host,
                           user=user,
                           pwd=passwd,
+                          port=50000,
                           sslContext=context)
         
         
@@ -75,39 +76,40 @@ class vcEvent():
         alarmList=[]
         
         searchIndex = si.RetrieveContent().searchIndex
-        vms = searchIndex.FindAllByIp(ip=host, vmSearch=True)
+        vim = searchIndex.FindAllByIp(ip=host, vmSearch=True)
+
        
-#         sys.exit()
-        for alarm in alarms:
-            print alarm.info
-            alarmList.append(alarm)
-            try:
-                # only alarms of type EventAlarms can be unset
-                if isinstance(alarm.info.expression.expression[0], vim.alarm.EventAlarmExpression):
-                    # status can be Normal, Warning, Alert, or Unset. Unset maps to "none"
-                    if alarm.info.expression.expression[0].status == None:
-                        print '-'*50
-                        errDic={}
-#                         print alarm.info
-                        print alarm.info.name
-                        print alarm.info.description
-                        print alarm.info.systemName
-                        timestr= alarm.info.lastModifiedTime
-                        event_time= timestr.strftime('%Y-%m-%d %H:%M:%S')
-                        errDic={}
-                        errDic['serial']=host
-                        errDic['event_date']=event_time
-                        errDic['event_code']=alarm.info.name
-                        errDic['severity']='Alarm'
-                        errDic['desc']=alarm.info.description
-                        errDic['vendor']='VMware'
-                        errDic['device_type']='vCenter'
-                        errDic['method'] = 'snmp'
-                        errDic['etc'] =alarm.info.systemName
-                        self.snmp.errSnmpTrapSend(errDic)
-                        self.fwrite(alarm.info)
-            except AttributeError, e:
-                None
+# #         sys.exit()
+#         for alarm in alarms:
+#             print alarm.info
+#             alarmList.append(alarm)
+#             try:
+#                 # only alarms of type EventAlarms can be unset
+#                 if isinstance(alarm.info.expression.expression[0], vim.alarm.EventAlarmExpression):
+#                     # status can be Normal, Warning, Alert, or Unset. Unset maps to "none"
+#                     if alarm.info.expression.expression[0].status == None:
+#                         print '-'*50
+#                         errDic={}
+# #                         print alarm.info
+#                         print alarm.info.name
+#                         print alarm.info.description
+#                         print alarm.info.systemName
+#                         timestr= alarm.info.lastModifiedTime
+#                         event_time= timestr.strftime('%Y-%m-%d %H:%M:%S')
+#                         errDic={}
+#                         errDic['serial']=host
+#                         errDic['event_date']=event_time
+#                         errDic['event_code']=alarm.info.name
+#                         errDic['severity']='Alarm'
+#                         errDic['desc']=alarm.info.description
+#                         errDic['vendor']='VMware'
+#                         errDic['device_type']='vCenter'
+#                         errDic['method'] = 'snmp'
+#                         errDic['etc'] =alarm.info.systemName
+#                         self.snmp.errSnmpTrapSend(errDic)
+#                         self.fwrite(alarm.info)
+#             except AttributeError, e:
+#                 None
 
 
 
@@ -158,4 +160,4 @@ if __name__ == "__main__":
     """
     print vim.host.DateTimeSystem.TimeZone.Array()
     print dir(vim.host.DateTimeSystem.TimeZone)
-#     vcEvent().main()
+    vcEvent().main()

@@ -23,20 +23,24 @@ import datetime
 import fletaDbms
 import fletaSnmp
 from _ast import If
+import ins_vnstat_guest
 data = {}
 class VM():
     def __init__(self):
         self.db=fletaDbms.FletaDb()
         self.vmList=[]
-        self.oldVmStatus=self.oldVmStatus()
+
         self.snmp=fletaSnmp.Load()
     
     def oldVmStatus(self):
         oldVmStatus={}
         oldVmList=self.db.getList('guest')
-        for oldvm in oldVmList:
-            oldVmStatus[oldvm[1]]=oldvm[5]
-        return oldVmStatus
+        if not oldVmList == None:
+            for oldvm in oldVmList:
+                oldVmStatus[oldvm[1]]=oldvm[5]
+            return oldVmStatus
+        else:
+            return {}
     
     def getNICs(self,summary, guest):
         nics = {}
@@ -146,26 +150,35 @@ class VM():
         errDic['device_type']='vm gueset'
         errDic['method'] = 'snmp'
         errDic['etc'] =str(smsInfo)
-        print (errDic)
-        try:
-            self.snmp.errSnmpTrapSendV3(errDic)
-        except:
-            pass
-    
-    def main(self):
+        # print (errDic)
+        self.snmp.errSnmpTrapSendV2(errDic)
 
+
+
+    def main(self):
+        print ('vm status start..')
         smsList=[]
         vcList=self.getVcList()
+
         for vc in vcList:
-            self.vmStat(vc)
-        
+            try:
+                self.vmStat(vc)
+            except Exception as e:
+                print (str(e))
+
+
+
+        vcList = self.getVcList()
+
+        self.oldVmStatus = self.oldVmStatus()
+        print ('vm count :',len(self.oldVmStatus))
         if  self.oldVmStatus == {} :
             self.db.upsert(self.vmList)
             return None
         else:
             for vm in self.vmList:
                 vm_uuid=vm['vm_uuid']
-                print (vm_uuid)
+                # print (vm_uuid)
                     
         
                 if vm_uuid not in self.oldVmStatus.keys():
@@ -174,16 +187,20 @@ class VM():
                     smsList.append(msg)
                     vm['desc']=msg
                     self.snmp_send(vm)
-                    
-                if not vm['vm_uuid'] == self.oldVmStatus[vm_uuid]:
-                    print (vm['vm_name'],vm['vc_vcenter'],vm['vc_hostserver'],self.oldVmStatus[vm_uuid],vm['vm_power'])
+
+
+                # print (self.oldVmStatus[vm_uuid],vm['vm_uuid'],vm['vm_power'] == self.oldVmStatus[vm_uuid])
+                # print (vm)
+                if not vm['vm_power'] == self.oldVmStatus[vm_uuid]:
+                    # print (vm['vm_name'],vm['vc_vcenter'],vm['vc_hostserver'],self.oldVmStatus[vm_uuid],vm['vm_power'])
                     msg='[MXG SMS] vmweare Server Alert: vm geuset (vm name : %s , v-center : %s, ESX : %s) power status has changed %s-> %s'%(vm['vm_name'],vm['vc_vcenter'],vm['vc_hostserver'],self.oldVmStatus[vm_uuid],vm['vm_power'])
                     smsList.append(msg)
                     vm['desc']=msg
+
                     self.snmp_send(vm)
                     
         self.db.upsert(self.vmList)
-
+        print ('END vm staus')
         return smsList
 if __name__ == "__main__":
     VM().main()

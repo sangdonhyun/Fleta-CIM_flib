@@ -7,7 +7,6 @@ import itertools
 from pyVmomi import vim, vmodl
 from pyVim.connect import SmartConnect, Disconnect
 import humanize
-import ssl
 
 MBFACTOR = float(1 << 20)
 
@@ -16,20 +15,6 @@ printDatastore = True
 printHost = False
 
 
-def GetArgs():
-
-    parser = argparse.ArgumentParser(
-        description='Process args for retrieving all the Virtual Machines')
-    parser.add_argument('-s', '--host', required=True, action='store',
-                        help='Remote host to connect to')
-    parser.add_argument('-o', '--port', type=int, default=443, action='store',
-                        help='Port to connect on')
-    parser.add_argument('-u', '--user', required=True, action='store',
-                        help='User name to use when connecting to host')
-    parser.add_argument('-p', '--password', required=False, action='store',
-                        help='Password to use when connecting to host')
-    args = parser.parse_args()
-    return args
 
 
 def printHostInformation(host):
@@ -120,23 +105,18 @@ def printVmInformation(virtual_machine, depth=1):
 
 
 def main():
-    
-    host='10.10.10.64'
-    user='administrator@vsphere.local'
-    password='Kes2719!'
-    
-    context = None
-    if hasattr(ssl, '_create_unverified_context'):
-        context = ssl._create_unverified_context()
-        si = SmartConnect(host=host,
-                      user=user,
-                      pwd=password,
-                      sslContext=context)
-    
-    
-    atexit.register(Disconnect, si)
-    content = si.RetrieveContent()
+    """
+[vcenter1]
+ip=121.170.193.209
+username=administrator@vsphere.local
+password=Kes2719!
+port = 50000
+    """
     try:
+        si = SmartConnect(host="121.170.193.209", user="administrator@vsphere.local",
+                          pwd="Kes2719!", port=50000)
+        atexit.register(Disconnect, si)
+        content = si.RetrieveContent()
 
         for datacenter in content.rootFolder.childEntity:
             print "##################################################"
@@ -144,34 +124,24 @@ def main():
             print "### datacenter : " + datacenter.name
             print "##################################################"
 
+            if printVM:
+                if hasattr(datacenter.vmFolder, 'childEntity'):
+                    vmFolder = datacenter.vmFolder
+                    vmList = vmFolder.childEntity
+                    for vm in vmList:
+                        printVmInformation(vm)
 
-#             if hasattr(datacenter.vmFolder, 'childEntity'):
-#                 vmFolder = datacenter.vmFolder
-#                 vmList = vmFolder.childEntity
-#                 for vm in vmList:
-#                     printVmInformation(vm)
+            if printDatastore:
+                datastores = datacenter.datastore
+                for ds in datastores:
+                    printDatastoreInformation(ds)
 
-
-            datastores = datacenter.datastore
-            for ds in datastores:
-                printDatastoreInformation(ds)
-
-            
-            if hasattr(datacenter.vmFolder, 'childEntity'):
-                hostFolder = datacenter.hostFolder
-                computeResourceList = hostFolder.childEntity
-                for computeResource in computeResourceList:
-                    print computeResource
-#                     
-#                     hostList = computeResource.host
-#                     for host in hostList:
-#                         summary = host.summary
-#                         stats = summary.quickStats
-#                         hardware = host.hardware
-#                         print summary
-#                         print stats
-#                         print hardware
-                    printComputeResourceInformation(computeResource)
+            if printHost:
+                if hasattr(datacenter.vmFolder, 'childEntity'):
+                    hostFolder = datacenter.hostFolder
+                    computeResourceList = hostFolder.childEntity
+                    for computeResource in computeResourceList:
+                        printComputeResourceInformation(computeResource)
 
     except vmodl.MethodFault as error:
         print "Caught vmodl fault : " + error.msg

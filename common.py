@@ -117,12 +117,12 @@ class Common():
             self.sysOut('cfg file problem')
         config = ConfigParser.RawConfigParser()
         config.read(cfgFile)
-        self.server=config.get('server','ip')
-        self.user=config.get('server','user')
-        if len(config.get('server','passwd')) > 40:
-            self.passwd=Decode().fdec(config.get('server','passwd'))
-        else:
-            self.passwd=config.get('server','passwd')
+        # self.server=config.get('server','ip')
+        # self.user=config.get('server','user')
+        # if len(config.get('server','passwd')) > 40:
+        #     self.passwd=Decode().fdec(config.get('server','passwd'))
+        # else:
+        #     self.passwd=config.get('server','passwd')
         return config
     
     

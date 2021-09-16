@@ -1,10 +1,13 @@
-#-*- coding: utf-8 -*
 '''
 Created on 2019. 5. 16.
 
 @author: Administrator
 '''
+'''
+Created on 2018. 11. 5.
 
+@author: user
+'''
 import os
 import re
 import sys
@@ -19,10 +22,47 @@ import serial
 
 class Load():
     def __init__(self):
-        pass
+        self.cfg = self.get_cfg()
+
+    def get_cfg(self):
+        cfg = ConfigParser.RawConfigParser()
+        cfgFile = os.path.join('config','config.cfg')
+        cfg.read(cfgFile)
+        return cfg
     
-    
-            
+    def errSnmpTrapSendV2(self,errDic):
+        try:
+            snmp_ip = self.cfg.get('server', 'snmp_ip')
+        except :
+            snmp_ip = 'localhost'
+        print snmp_ip
+        iterator = sendNotification(
+            SnmpEngine(),
+            CommunityData('public', mpModel=0),
+            UdpTransportTarget((snmp_ip, 162)),
+            ContextData(),
+            'trap',
+            NotificationType(
+                ObjectIdentity('1.3.6.1.4.1.6485.901'),
+            ).addVarBinds(
+                ('1.3.6.1.4.1.6485.1001.0', OctetString(errDic['serial'])),
+                ('1.3.6.1.4.1.6485.1001.1', OctetString(errDic['event_date'])),
+                ('1.3.6.1.4.1.6485.1001.2', OctetString(errDic['event_code'])),
+                ('1.3.6.1.4.1.6485.1001.3', OctetString(errDic['severity'])),
+                ('1.3.6.1.4.1.6485.1001.4', OctetString(errDic['desc'])),
+                ('1.3.6.1.4.1.6485.1001.5', OctetString(errDic['vendor'])),
+                ('1.3.6.1.4.1.6485.1001.6', OctetString(errDic['device_type'])),
+                ('1.3.6.1.4.1.6485.1001.7', OctetString(errDic['method'])),
+                ('1.3.6.1.4.1.6485.1001.8', OctetString(errDic['etc'])),
+            ).loadMibs(
+                'SNMPv2-MIB'
+            )
+        )
+        errorIndication, errorStatus, errorIndex, varBinds = next(iterator)
+
+        if errorIndication:
+            print(errorIndication)
+
     def errSnmpTrapSend(self,errDic):
         cfg=ConfigParser.RawConfigParser()
         cfgFile='config\\config.cfg'
@@ -56,7 +96,7 @@ class Load():
                 ContextData(),
                 'trap',
                 NotificationType(
-                    ObjectIdentity('1.3.6.1.4.1.6485.901'),
+                    ObjectIdentity('1.3.6.1.4.1.6485.1001'),
                 ).addVarBinds(
                     ('1.3.6.1.4.1.6485.1001.0', OctetString(errDic['serial'])),
                     ('1.3.6.1.4.1.6485.1001.1', OctetString(errDic['event_date'])),
@@ -78,8 +118,6 @@ class Load():
 
 
     def errSnmpTrapSendV3(self,errDic):
-        print errDic['desc']
-        
         cfg=ConfigParser.RawConfigParser()
         cfgFile='config\\config.cfg'
         cfg.read(cfgFile)
@@ -143,9 +181,9 @@ class Load():
         errDic['vendor']='VMware'
         errDic['device_type']='vCenter'
         errDic['method'] = 'snmp'
-        errDic['etc'] ='test'
+        errDic['etc'] ='test222222'
         print errDic
-        self.errSnmpTrapSendV3(errDic)
+        self.errSnmpTrapSendV2(errDic)
         
         
         
