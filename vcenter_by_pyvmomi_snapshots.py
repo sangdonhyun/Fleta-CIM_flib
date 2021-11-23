@@ -371,10 +371,31 @@ class VCenter():
 #                 print (vmList)
                 for vm in vmList:
 
-                    try:
-                        rootSnapshots = vm.snapshot.rootSnapshotList
-                    except:
-                        rootSnapshots = []
+                    # try:
+                    print '-' * 50
+                    # for arg in dir(vm):
+                    #     print arg
+                    print '-'*50
+                    rootSnapshots = []
+                    print 'snapshot' in dir(vm)
+                    if 'snapshot' in dir(vm):
+                        print 'rootSnapshotList' in dir(vm.snapshot)
+                        if 'rootSnapshotList' in dir(vm.snapshot):
+                            rootSnapshots = vm.snapshot.rootSnapshotList
+
+                        if 'currentSnapshot' in dir(vm.snapshot):
+                            print '-currunt snapshot'
+                            print vm.snapshot.currentSnapshot
+
+                    # for arg in dir(vm.snapshot):
+                    #     print arg
+                    # print 'rootSnapshotList' in dir (vm.snapshot)
+                    #
+                    # if 'rootSnapshotList' in dir (vm.snapshot):
+                    #     rootSnapshots = vm.snapshot.rootSnapshotList
+
+                    # except:
+                    #     rootSnapshots = []
                     # print rootSnapshots
 
                     for snapshots in rootSnapshots:
