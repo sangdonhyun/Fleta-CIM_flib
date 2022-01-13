@@ -5,7 +5,7 @@ Created on 2020. 4. 26.
 '''
 import os
 import redis
-import ConfigParser
+import configparser
 import datetime
 import event_threshold
 import event_send_oracle
@@ -35,7 +35,7 @@ class vm_threshold():
         disk=self.threshold_common['disk']
         return int(cpu),int(mem),int(disk)
     def get_cfg(self):
-        cfg=ConfigParser.RawConfigParser()
+        cfg=configparser.RawConfigParser()
         cfgFile=os.path.join('config','Perform.cfg')
 #         print cfgFile,os.path.isfile(cfgFile)
         cfg.read(cfgFile)

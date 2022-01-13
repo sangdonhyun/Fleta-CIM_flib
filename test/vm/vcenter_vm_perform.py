@@ -19,7 +19,7 @@ from pyVim.connect import SmartConnectNoSSL, Disconnect
 import atexit
 import os
 import sys
-import ConfigParser
+import configparser
 
 class VmPerform():
     def __init__(self,vcInfo):
@@ -124,7 +124,7 @@ class Manager():
     
     
     def getCFg(self):
-        cfg = ConfigParser.RawConfigParser()
+        cfg = configparser.RawConfigParser()
         cfgFile= os.path.join('config','list.cfg')
         cfg.read(cfgFile)
         return cfg

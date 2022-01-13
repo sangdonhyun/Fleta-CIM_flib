@@ -12,7 +12,7 @@ import sys
 import os
 import datetime
 import time
-import ConfigParser
+import configparser
 from ftplib import FTP
 import re
 import logging
@@ -115,7 +115,7 @@ class Common():
         cfgFile = os.path.join(self.confDir,'config.cfg')
         if os.path.isfile(cfgFile) == False:
             self.sysOut('cfg file problem')
-        config = ConfigParser.RawConfigParser()
+        config = configparser.RawConfigParser()
         config.read(cfgFile)
         # self.server=config.get('server','ip')
         # self.user=config.get('server','user')
@@ -154,32 +154,7 @@ class Common():
         return logger
     
     
-    def fletaPutFtp(self,filename, chdir='Hitachi.disk'):
-        
-#         print self.server
-#         print self.user
-#         print self.passwd
-        print filename,os.path.isfile(filename)
-        
-        ftp = FTP(self.server)
-        ftp.login(self.user, self.passwd,2)
-        ftp.cwd(chdir)
-        remote_file = os.path.basename(filename)
-        print remote_file
-        print remote_file in ftp.nlst()
-        rc = ftp.storlines('STOR '+remote_file, open(filename, 'r'))
-        print remote_file in ftp.nlst()
-        self.sysOut('FTP :'+rc)
-        
-        if re.search('complete',rc):
-            rcBit = True
-        else:
-            self.sysOut('FTP TRAN FAIL :%s'%rc)
-            rcBit = False
-        ftp.close()
-        sys.stdout.write('FTP SUCC')
 
-        return rc
     
     def sysOut(self,msg):
         logger = self.flog()
@@ -228,22 +203,7 @@ class Common():
         msg += '#'*78+'\n'
         return msg
     
-    
-def decodeTest():
-    li=glob.glob('D:\\Fleta\\data\\diskinfo.SCH\\*.tmp')
-#    for i in li:
-#        decBit = Decode().decBit(i)
-#        print i,decBit
-#            
-#        
-#        if decBit :
-#            print 'encoding...'
-#            print Decode().fileEnc(i)
-#        else:
-#            print 'decoding...'
-#            print Decode().fileDec(i)
-    for i in li:
-        print Decode().fileDecReText(i)
+
 
 def logTest():
     common = Common()
@@ -258,8 +218,8 @@ if __name__=='__main__':
 #    print os.path.isfile(fname)
 #    print Common().fletaPutFtp(fname,'diskinfo.SCH')
     dec=Decode()
-    print dec._en('kes2719!')
-    print dec._de('a2VzMjcxOSE')
+    print(dec._en('kes2719!'))
+    print(dec._de('a2VzMjcxOSE'))
 
     
     

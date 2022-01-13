@@ -5,7 +5,7 @@ Created on 2019. 10. 10.
 @author: Administrator
 '''
 import event_oracle
-import ConfigParser
+import configparser
 import os
 import time
 import datetime
@@ -16,7 +16,7 @@ class vmEvent():
         
     def getUsers(self):
         users={}
-        cfg=ConfigParser.RawConfigParser()
+        cfg=configparser.RawConfigParser()
         cfgFile=os.path.join('config','user.cfg')
         cfg.read(cfgFile)
         for sec in cfg.sections():

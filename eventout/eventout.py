@@ -5,7 +5,7 @@ Created on 2017. 10. 16.
 '''
 import os
 import sys
-import ConfigParser
+import configparser
 import zipfile
 import glob
 import common
@@ -28,7 +28,7 @@ class Load():
         return 'pm_auto_hitachi_real_info_%s'%date
     
     def getCfg(self):
-        cfg = ConfigParser.RawConfigParser()
+        cfg = configparser.RawConfigParser()
         cfgFile = os.path.join('config','config.cfg')
         cfg.read(cfgFile)
         return cfg

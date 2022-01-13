@@ -17,7 +17,7 @@ import argparse
 import atexit
 import getpass
 import json
-import ConfigParser
+import configparser
 import os
 import datetime
 import fletaDbms
@@ -124,7 +124,7 @@ class VM():
                         self.vmList.append(vmstat)
 
     def getVcList(self):
-        cfg = ConfigParser.RawConfigParser()
+        cfg = configparser.RawConfigParser()
         cfgFile = os.path.join('config', 'list.cfg')
         cfg.read(cfgFile)
         vcList = []

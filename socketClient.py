@@ -7,10 +7,13 @@ import threading, time
 import socket
 import os
 import sys
+
+from past.builtins import raw_input
+
 import common
 import ast
 import glob
-import ConfigParser
+import configparser
 import random
 
 
@@ -26,11 +29,11 @@ class SocketSender():
             self.PORT=self.cfg.get('server','port')
         except:
             self.PORT=54002
-        
+
     
     
     def getCfg(self):
-        cfg = ConfigParser.RawConfigParser()
+        cfg = configparser.RawConfigParser()
         cfgFile  = os.path.join('config','config.cfg')
         cfg.read(cfgFile)
         return cfg
@@ -65,30 +68,35 @@ class SocketSender():
         
 #         print info
         dec=common.Decode()
-        
-        data=dec.fenc(str(info))
+        info_str = str(info).encode('utf-8')
+        # data=dec.fenc(info_str)
+
         # print data
         
         # Create a socket (SOCK_STREAM means a TCP socket)
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sBit=False
-        
+        print (HOST,PORT)
         try:
             # Connect to server and send data
             sock.connect((HOST, PORT))
-            sock.sendall(data + "\n")
+            sock.sendall(info_str+ b"\n")
         
             # Receive data from the server and shut down
             received = sock.recv(1024)
-            print received
+            print(received)
+            print(type(received))
+            if not isinstance(received, str):
+                received = received.decode('utf-8')
             if received=='READY':
                 with open(fname) as f:
                     data=f.read()
-                sock.sendall(data)
+                print(type(data))
+                sock.sendall(data.encode())
             sBit = True
         except socket.error as e:
             sBit = False
-            print e
+            print (str(e))
         finally:
             sock.close()
         
@@ -100,10 +108,11 @@ class SocketSender():
         while 1:
             sBit=self.send()
             if sBit :
-                print "FILE TRANSFER SUCC BY SOCKET"
+                print("FILE TRANSFER SUCC BY SOCKET")
                 break
             else:
-                print 'FLETA SERVER : %s , PORT : %s SEND FILE ERROR RETRY (%d/%d) '%(self.HOST,self.PORT,cnt+1,reCnt)
+                print('FLETA SERVER : %s , PORT : %s SEND FILE ERROR RETRY (%d/%d) ' % (
+                self.HOST, self.PORT, cnt + 1, reCnt))
             cnt += 1
             if reCnt == cnt:
                 break 
@@ -111,8 +120,8 @@ class SocketSender():
             time.sleep(random.randint(5,10))
     
 if __name__=='__main__':
-    arg = sys.argv
-    fileName=raw_input('FILENAME:')
+
+    fileName=os.path.join('data','vcenter1_121.170.193.209.tmp')
     if os.path.isfile(fileName):
-        SocketSender(FILENAME=fileName,DIR='nasinfo.SCH').main()
+        SocketSender(FILENAME=fileName,DIR='vnext/vcenter').main()
         

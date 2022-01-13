@@ -11,7 +11,7 @@ Created on 2018. 11. 5.
 import os
 import re
 import sys
-import ConfigParser
+import configparser
 import glob
 import time
 from time import strftime, localtime, time
@@ -25,7 +25,7 @@ class Load():
         self.cfg = self.get_cfg()
 
     def get_cfg(self):
-        cfg = ConfigParser.RawConfigParser()
+        cfg = configparser.RawConfigParser()
         cfgFile = os.path.join('config','config.cfg')
         cfg.read(cfgFile)
         return cfg
@@ -35,7 +35,7 @@ class Load():
             snmp_ip = self.cfg.get('server', 'snmp_ip')
         except :
             snmp_ip = 'localhost'
-        print snmp_ip
+        print(snmp_ip)
         iterator = sendNotification(
             SnmpEngine(),
             CommunityData('public', mpModel=0),
@@ -64,7 +64,7 @@ class Load():
             print(errorIndication)
 
     def errSnmpTrapSend(self,errDic):
-        cfg=ConfigParser.RawConfigParser()
+        cfg=configparser.RawConfigParser()
         cfgFile='config\\config.cfg'
         cfg.read(cfgFile)
         # print os.path.isfile(cfgFile)
@@ -118,7 +118,7 @@ class Load():
 
 
     def errSnmpTrapSendV3(self,errDic):
-        cfg=ConfigParser.RawConfigParser()
+        cfg=configparser.RawConfigParser()
         cfgFile='config\\config.cfg'
         cfg.read(cfgFile)
         print os.path.isfile(cfgFile)

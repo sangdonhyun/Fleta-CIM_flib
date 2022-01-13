@@ -13,7 +13,7 @@ import datetime
 from pyVmomi import vmodl
 from threading import Thread
 import ssl
-import ConfigParser
+import configparser
 import os
 
 class perfdata():
@@ -202,7 +202,7 @@ class Manager():
     
     
     def getCFg(self):
-        cfg = ConfigParser.RawConfigParser()
+        cfg = configparser.RawConfigParser()
         cfgFile= os.path.join('config','list.cfg')
         cfg.read(cfgFile)
         return cfg

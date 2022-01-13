@@ -6,7 +6,7 @@ Created on 2019. 4. 25.
 '''
 import os
 import sys
-import ConfigParser
+import configparser
 from pyVim.connect import SmartConnect, Disconnect
 from pyVmomi import vim
 
@@ -395,7 +395,7 @@ class Manager():
     
     
     def getCFg(self):
-        cfg = ConfigParser.RawConfigParser()
+        cfg = configparser.RawConfigParser()
         cfgFile= os.path.join('config','list.cfg')
         cfg.read(cfgFile)
         return cfg

@@ -5,7 +5,7 @@ Created on 2019. 4. 30.
 '''
 import os
 import sys
-import ConfigParser
+import configparser
 from pyVim.connect import SmartConnect, Disconnect
 from pyVmomi import vim
 

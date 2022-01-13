@@ -6,7 +6,7 @@ Created on 2019. 5. 8.
 from __future__ import print_function
 import os
 import sys
-import ConfigParser
+import configparser
 from pyVim.connect import SmartConnect, Disconnect
 from pyVmomi import vim
 

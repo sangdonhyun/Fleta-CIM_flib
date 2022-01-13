@@ -17,7 +17,7 @@ import atexit
 import sys
 import argparse
 import fletaSnmp
-import ConfigParser
+import configparser
 import datetime
 
 class HostAlarm():
@@ -42,18 +42,18 @@ class HostAlarm():
         print('Type: ' + host.hardware.systemInfo.model)
         print('Getting temperature sensor data...\n')
 #         print health
-        print host.name
-        print host.summary.hardware.uuid
-        print host.summary
+        print (host.name)
+        print (host.summary.hardware.uuid)
+        print (host.summary)
         for i in health:
-            print '-'*50
-            print i.sensorType
-            print i.healthState.label
-            print str(i)
+            print ('-'*50)
+            print (i.sensorType)
+            print (i.healthState.label)
+            print (str(i))
             if not i.healthState.label not in  ('Green','녹색'):
                 errDic={}
                 errDic['serial']=host.name
-                print type(i.timeStamp)
+                print (type(i.timeStamp))
                 try:
                     errDic['event_date']=datetime.datetime.strptime(i.timeStamp,'%Y-%m-%dT%H:%M:%SZ')
                 except:
@@ -61,7 +61,7 @@ class HostAlarm():
                 errDic['event_code']='%s_helth_check'%i.sensorType
                 errDic['severity']=i.healthState.label
                 msg='%s %s'%(i.name,i.healthState.summary)
-                print 'evnet date ',errDic['event_date']
+                print ('evnet date ',errDic['event_date'])
                 try:
                     currentReading=i.currentReading
                     msg=msg+' currentReading :%s'%currentReading
@@ -72,7 +72,7 @@ class HostAlarm():
                 errDic['device_type']='VCT'
                 errDic['method'] = 'snmp'
                 errDic['etc'] ='SENSOR TYPE : %s, ID : %s'%(i.sensorType,i.id)
-                print errDic
+                print (errDic)
                 fletaSnmp.Load().errSnmpTrapSendV2(errDic)
                 
                 
@@ -104,7 +104,7 @@ class HostAlarm():
         atexit.register(Disconnect, si)
         hosts = self.GetVMHosts(content)
         for host in hosts:
-            print 'host health info'
+            print ('host health info')
             self.host_health(host)
 #             
 class Manager():
@@ -113,7 +113,7 @@ class Manager():
     
     
     def getCFg(self):
-        cfg = ConfigParser.RawConfigParser()
+        cfg = configparser.RawConfigParser()
         cfgFile= os.path.join('config','list.cfg')
         cfg.read(cfgFile)
         return cfg

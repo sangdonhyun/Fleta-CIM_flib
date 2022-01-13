@@ -18,7 +18,7 @@ from pyVim.connect import SmartConnectNoSSL, Disconnect
 import atexit
 import sys
 import datetime
-import ConfigParser
+import configparser
 import os, socket, struct, select, time
 import fletaDbms
 
@@ -168,7 +168,7 @@ class vm_Perform():
         self.esxDicList=[]
     
     def getVcList(self):
-        cfg=ConfigParser.RawConfigParser()
+        cfg=configparser.RawConfigParser()
         cfgFile=os.path.join('config','list.cfg')
         cfg.read(cfgFile)
         vcList=[]

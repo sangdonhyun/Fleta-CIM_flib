@@ -6,7 +6,7 @@ Created on 2019. 4. 25.
 '''
 import os
 import sys
-import ConfigParser
+import configparser
 from pyVim.connect import SmartConnect, Disconnect,SmartConnectNoSSL
 from pyVmomi import vim
 
@@ -20,8 +20,8 @@ import re
 import datetime
 import time
 
-reload(sys)
-sys.setdefaultencoding('utf8')
+# reload(sys)
+# sys.setdefaultencoding('utf8')
 
 
 
@@ -104,7 +104,7 @@ class VCenter():
                 self.fwrite(str(dc))
 
                 self.fwrite('*'*50+'\n')
-                print dc.name
+                print(dc.name)
                 msg='DATA CENTER : %s'%str(dc.name)
                 self.fwrite(msg)
                 datastores = dc.datastore
@@ -130,7 +130,7 @@ class VCenter():
 #                     msg=self.dcHostInfo(computeResource)
 
 #                     self.fwrite(msg)
-                    print dir(computeResource)
+                    print(dir(computeResource))
                     hostList = computeResource.host
                     for host in hostList:
                         self.fwrite('-'*50)
@@ -141,9 +141,9 @@ class VCenter():
         msg=''
 #         try:
         hostList = cr.host
-        print "##################################################"
-        print "Compute resource name: ", cr.name
-        print "##################################################"
+        print("##################################################")
+        print("Compute resource name: ", cr.name)
+        print("##################################################")
         for host in hostList:
             msg=self.getHostInfo(host)
 #         except Exception as error:
@@ -200,10 +200,10 @@ class VCenter():
         msg=''
         
         summary = datastore.summary
-        print dir(summary)
+        print(dir(summary))
         name = summary.name.encode('utf-8')
 
-        print name,type(name)
+        # print(name, type(name))
         capacity = summary.capacity
         freeSpace = summary.freeSpace
         uncommittedSpace = summary.uncommitted
@@ -220,7 +220,7 @@ class VCenter():
         msg+= "Free space: %s"%(freeSpace)+'\n'
         msg+= "Free space percentage: %s "%(freeSpacePercentage)+'\n'
         msg += "-"*50+'\n'
-        print msg
+        print(msg)
         return msg
     
          
@@ -278,11 +278,11 @@ class VCenter():
             computeResourceList = hostFolder.childEntity
             for computeResource in computeResourceList:
                 self.fwrite(str(computeResource))
-                print computeResource
+                print(computeResource)
                 hostList = computeResource.host
-                print "##################################################"
-                print "Compute resource name: ", computeResource.name
-                print "##################################################"
+                print("##################################################")
+                print("Compute resource name: ", computeResource.name)
+                print("##################################################")
                 for host in hostList:
                      
                     self.fwrite(str(host.summary))
@@ -342,10 +342,10 @@ class VCenter():
     def fwrite(self,msg,wbit='a'):
 #         print msg
 #         print msg,type(msg),type(msg) == type('유니코드')
-        if not type(msg) == type('유니코드'):
-            msg=unicode(msg)
+#         if not type(msg) == type('유니코드'):
+#             msg=unicode(msg)
         with open(self.fileName,wbit) as fw:
-            fw.write(msg+'\n')
+            fw.write(str(msg)+'\n')
     def GetVMHosts(self,content):
         print("Getting all ESX hosts ...")
         host_view = content.viewManager.CreateContainerView(content.rootFolder,
@@ -397,7 +397,7 @@ class VCenter():
         children = containerView.view
         #going 1 by 1 to every VM
         for child in children:
-            print child
+            print(child)
             self.fwrite(str(child))
             vm = child.summary.config.name
             vmSummary = child.summary
@@ -448,9 +448,9 @@ class VCenter():
             # print rootSnapshots
 
             for snapshots in rootSnapshots:
-                print snapshots
+                print(snapshots)
                 self.fwrite(snapshots)
-                print '-' * 49
+                print('-' * 49)
                 # print snapshots.childSnapshotList
 
     def main(self):
@@ -467,154 +467,154 @@ class VCenter():
         content = si.RetrieveContent()
         hosts=self.GetVMHosts(content)
         vc= si.content.about
-        print ("# DATETIME :",datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        print ("# RUNTIME  :",time.time() - st)
-        self.fwrite("# DATETIME :"+datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# RUNTIME A :" + str(time.time() - st))
-        self.fwrite("# RUNTIME B :" + str(time.time() - bt))
+        # print ("# DATETIME :",datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # print ("# RUNTIME  :",time.time() - st)
+        # self.fwrite("# DATETIME :"+datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # self.fwrite("# RUNTIME A :" + str(time.time() - st))
+        # self.fwrite("# RUNTIME B :" + str(time.time() - bt))
         self.fwrite("###***vCenter Host Spec Info***###")
         bt = time.time()
         self.dns_hostname(hosts)
-        print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        print ("# RUNTIME  :", time.time() - st)
-        self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# RUNTIME A :" + str(time.time() - st))
-        self.fwrite("# RUNTIME B :" + str(time.time() - bt))
+        # print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # print ("# RUNTIME  :", time.time() - st)
+        # self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # self.fwrite("# RUNTIME A :" + str(time.time() - st))
+        # self.fwrite("# RUNTIME B :" + str(time.time() - bt))
         self.fwrite("###***V-Center Info***###")
         bt = time.time()
         self.fwrite(str(vc))
-        print ("# DATETIME   :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        print ("# RUNTIME  ST:", time.time() - st)
-        self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# RUNTIME A :" + str(time.time() - st))
-        self.fwrite("# RUNTIME B :" + str(time.time() - bt))
+        # print ("# DATETIME   :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # print ("# RUNTIME  ST:", time.time() - st)
+        # self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # self.fwrite("# RUNTIME A :" + str(time.time() - st))
+        # self.fwrite("# RUNTIME B :" + str(time.time() - bt))
         self.fwrite("###***DATA CENTER***###")
         bt = time.time()
         self.getDataCenter(si)
-        print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        print ("# RUNTIME  :", time.time() - st)
-        self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# RUNTIME A :" + str(time.time() - st))
-        self.fwrite("# RUNTIME B :" + str(time.time() - bt))
+        # print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # print ("# RUNTIME  :", time.time() - st)
+        # self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # self.fwrite("# RUNTIME A :" + str(time.time() - st))
+        # self.fwrite("# RUNTIME B :" + str(time.time() - bt))
         self.fwrite("###***datastore***###")
         bt = time.time()
         self.getDataStore(si)
-        print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        print ("# RUNTIME  :", time.time() - st)
-        self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# RUNTIME A :" + str(time.time() - st))
-        self.fwrite("# RUNTIME B :" + str(time.time() - bt))
+        # print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # print ("# RUNTIME  :", time.time() - st)
+        # self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # self.fwrite("# RUNTIME A :" + str(time.time() - st))
+        # self.fwrite("# RUNTIME B :" + str(time.time() - bt))
         self.fwrite("###***datastore free***###")
         bt = time.time()
         self.getDataStoreFree(si)
-        print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        print ("# RUNTIME  :", time.time() - st)
-        self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# RUNTIME A :" + str(time.time() - st))
-        self.fwrite("# RUNTIME B :" + str(time.time() - bt))
+        # print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # print ("# RUNTIME  :", time.time() - st)
+        # self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # self.fwrite("# RUNTIME A :" + str(time.time() - st))
+        # self.fwrite("# RUNTIME B :" + str(time.time() - bt))
         self.fwrite("###***ESXi HOST***###")
         bt = time.time()
         self.getEsxiHost(si)
-        print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        print ("# RUNTIME  :", time.time() - st)
-        self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# RUNTIME A :" + str(time.time() - st))
-        self.fwrite("# RUNTIME B :" + str(time.time() - bt))
+        # print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # print ("# RUNTIME  :", time.time() - st)
+        # self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # self.fwrite("# RUNTIME A :" + str(time.time() - st))
+        # self.fwrite("# RUNTIME B :" + str(time.time() - bt))
         self.fwrite("###***ESXi HOST VNIC***###")
         bt = time.time()
         self.get_host_vnic(hosts)
-        print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        print ("# RUNTIME  :", time.time() - st)
-        self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# RUNTIME A :" + str(time.time() - st))
-        self.fwrite("# RUNTIME B :" + str(time.time() - bt))
+        # print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # print ("# RUNTIME  :", time.time() - st)
+        # self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # self.fwrite("# RUNTIME A :" + str(time.time() - st))
+        # self.fwrite("# RUNTIME B :" + str(time.time() - bt))
         self.fwrite("###***NETWORK***###")
         bt = time.time()
         self.GetHostsPortgroups(hosts)
-        print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        print ("# RUNTIME  :", time.time() - st)
-        self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# RUNTIME A :" + str(time.time() - st))
-        self.fwrite("# RUNTIME B :" + str(time.time() - bt))
+        # print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # print ("# RUNTIME  :", time.time() - st)
+        # self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # self.fwrite("# RUNTIME A :" + str(time.time() - st))
+        # self.fwrite("# RUNTIME B :" + str(time.time() - bt))
         self.fwrite("###***VirtualSwitch***###")
         bt = time.time()
         self.GetHostsSwitches(hosts)
-        print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# RUNTIME A :" + str(time.time() - st))
-        self.fwrite("# RUNTIME B :" + str(time.time() - bt))
+        # print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # self.fwrite("# RUNTIME A :" + str(time.time() - st))
+        # self.fwrite("# RUNTIME B :" + str(time.time() - bt))
         self.fwrite("###***Host HardWare***###")
         bt = time.time()
         self.GetHardware(hosts)
         print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# RUNTIME A :" + str(time.time() - st))
-        self.fwrite("# RUNTIME B :" + str(time.time() - bt))
+        # self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # self.fwrite("# RUNTIME A :" + str(time.time() - st))
+        # self.fwrite("# RUNTIME B :" + str(time.time() - bt))
         self.fwrite("###***vCenter Host scsi lun***###")
         bt = time.time()
         self.host_scsi_lun(hosts)
-        print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        print ("# RUNTIME  :", time.time() - st)
-        self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# RUNTIME A :" + str(time.time() - st))
-        self.fwrite("# RUNTIME B :" + str(time.time() - bt))
+        # print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # print ("# RUNTIME  :", time.time() - st)
+        # self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # self.fwrite("# RUNTIME A :" + str(time.time() - st))
+        # self.fwrite("# RUNTIME B :" + str(time.time() - bt))
         self.fwrite("###***vCenter Host hba Info***###")
         bt = time.time()
         self.host_hba_info(hosts)
-        print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        print ("# RUNTIME  :", time.time() - st)
-        self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# RUNTIME A :" + str(time.time() - st))
-        self.fwrite("# RUNTIME B :" + str(time.time() - bt))
+        # print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # print ("# RUNTIME  :", time.time() - st)
+        # self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # self.fwrite("# RUNTIME A :" + str(time.time() - st))
+        # self.fwrite("# RUNTIME B :" + str(time.time() - bt))
         self.fwrite("###***VM Guest***###")
         bt = time.time()
         vm_list=self.AllVm(si)
-        print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        print ("# RUNTIME  :", time.time() - st)
-        self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# RUNTIME A :" + str(time.time() - st))
-        self.fwrite("# RUNTIME B :" + str(time.time() - bt))
+        # print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # print ("# RUNTIME  :", time.time() - st)
+        # self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # self.fwrite("# RUNTIME A :" + str(time.time() - st))
+        # self.fwrite("# RUNTIME B :" + str(time.time() - bt))
         self.fwrite("###***VM Snap Info***###")
         bt = time.time()
         self.get_snap_info(vm_list)
-        print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        print ("# RUNTIME  :", time.time() - st)
-        self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# RUNTIME A :" + str(time.time() - st))
-        self.fwrite("# RUNTIME B :" + str(time.time() - bt))
+        # print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # print ("# RUNTIME  :", time.time() - st)
+        # self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # self.fwrite("# RUNTIME A :" + str(time.time() - st))
+        # self.fwrite("# RUNTIME B :" + str(time.time() - bt))
         self.fwrite("###***VM Guest freeSpace***###")
         bt = time.time()
         self.VMGuestFreeSpace(content)
-        print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        print ("# RUNTIME  :", time.time() - st)
-        self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# RUNTIME A :" + str(time.time() - st))
-        self.fwrite("# RUNTIME B :" + str(time.time() - bt))
+        # print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # print ("# RUNTIME  :", time.time() - st)
+        # self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # self.fwrite("# RUNTIME A :" + str(time.time() - st))
+        # self.fwrite("# RUNTIME B :" + str(time.time() - bt))
         self.fwrite("###***vCenter storage info***###")
         bt = time.time()
         self.get_scsi_scsiLun(hosts)
-        print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        print ("# RUNTIME  :", time.time() - st)
-        self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# RUNTIME A :" + str(time.time() - st))
-        self.fwrite("# RUNTIME B :" + str(time.time() - bt))
+        # print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # print ("# RUNTIME  :", time.time() - st)
+        # self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # self.fwrite("# RUNTIME A :" + str(time.time() - st))
+        # self.fwrite("# RUNTIME B :" + str(time.time() - bt))
 
         endMsg=self.getEndMsg()
         self.fwrite(endMsg)
         bt = time.time()
         socketClient.SocketSender(FILENAME=self.fileName,DIR='vnext\\vcenter').main()
-        print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        print ("# RUNTIME  :", time.time() - st)
-        self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-        self.fwrite("# RUNTIME A :" + str(time.time() - st))
-        self.fwrite("# RUNTIME B :" + str(time.time() - bt))
+        # print ("# DATETIME :", datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # print ("# RUNTIME  :", time.time() - st)
+        # self.fwrite("# DATETIME :" + datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        # self.fwrite("# RUNTIME A :" + str(time.time() - st))
+        # self.fwrite("# RUNTIME B :" + str(time.time() - bt))
 class Manager():
     def __init__(self):
         self.cfg = self.getCFg()
     
     
     def getCFg(self):
-        cfg = ConfigParser.RawConfigParser()
+        cfg = configparser.RawConfigParser()
         cfgFile= os.path.join('config','list.cfg')
         cfg.read(cfgFile)
         return cfg
@@ -624,7 +624,7 @@ class Manager():
         for sec in self.cfg.sections():
             host={}
             host['name'] = sec
-            
+
             for opt in self.cfg.options(sec):
                 host[opt] = self.cfg.get(sec,opt)
             hostList.append(host)
@@ -635,6 +635,7 @@ class Manager():
         hostList=self.getHost()
 
         for host in hostList:
+            print(host)
             VCenter(host).main()
 
 if __name__=='__main__':

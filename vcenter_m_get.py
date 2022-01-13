@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*
 import threading
 import vcenter_by_pyvmomi
-import ConfigParser
+import configparser
 import os
 
 # CounterThread
@@ -16,7 +16,7 @@ class CounterThread(threading.Thread):
 
 
 def get_vc_list():
-    cfg = ConfigParser.RawConfigParser()
+    cfg = configparser.RawConfigParser()
     cfg_file = os.path.join('config','list.cfg')
     cfg.read(cfg_file)
     hostList = []

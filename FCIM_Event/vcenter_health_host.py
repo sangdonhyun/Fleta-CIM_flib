@@ -17,7 +17,7 @@ import atexit
 import sys
 import argparse
 import fletaSnmp
-import ConfigParser
+import configparser
 from datetime import datetime, timedelta
 # import datetime
 class HostAlarm():
@@ -237,7 +237,7 @@ class Manager():
     
     
     def getCFg(self):
-        cfg = ConfigParser.RawConfigParser()
+        cfg = configparser.RawConfigParser()
         cfgFile= os.path.join('config','list.cfg')
         cfg.read(cfgFile)
         return cfg

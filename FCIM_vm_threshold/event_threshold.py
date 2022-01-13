@@ -3,7 +3,7 @@ Created on 2020. 4. 25.
 
 @author: user
 '''
-import ConfigParser
+import configparser
 import os
 import sys
 import psycopg2
@@ -15,7 +15,7 @@ class threshold():
         self.conn_string = self.getConnStr()
     
     def get_cfg(self):
-        cfg=ConfigParser.RawConfigParser()
+        cfg=configparser.RawConfigParser()
         cfg_file = os.path.join('config','RDBload.cfg')
         cfg.read(cfg_file)
         return cfg

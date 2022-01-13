@@ -8,7 +8,7 @@ Created on 2013. 2. 11.
 import sys
 import os
 import psycopg2
-import ConfigParser
+import configparser
 import codecs
 import locale
 import common
@@ -24,19 +24,19 @@ class FletaDb():
                 
 #         self.conn_string = "host='localhost' dbname='fleta' user='fletaAdmin' password='kes2719!'"
         self.conn_string = self.getConnStr()
-        print self.conn_string
+        print(self.conn_string)
         self.cfg = self.getCfg()
         
         
     
     def getCfg(self):
-        cfg = ConfigParser.RawConfigParser()
+        cfg = configparser.RawConfigParser()
         cfgFile = os.path.join('config','config.cfg')
         cfg.read(cfgFile)
         return cfg
     
     def getConnStr(self):
-        cfg = ConfigParser.RawConfigParser()
+        cfg = configparser.RawConfigParser()
         cfgFile = os.path.join('config','config.cfg')
         cfg.read(cfgFile)
         try:
@@ -83,8 +83,8 @@ class FletaDb():
         return self.com.getNow('%Y%m%d')
     
     def queryExec(self,query):
-        print query
-        print self.conn_string
+        print(query)
+        print(self.conn_string)
         con = None
 #         try:
         con = psycopg2.connect(self.conn_string)
@@ -108,7 +108,7 @@ class FletaDb():
     
         db=psycopg2.connect(self.conn_string)
         cursor = db.cursor()
-        print 'query 2:',query
+        print('query 2:', query)
         cursor.execute(query)
         rows = cursor.fetchall()
         
@@ -133,17 +133,12 @@ class FletaDb():
 #             print "Number of rows updated: %d" % cur.rowcount
                
         
-        except psycopg2.DatabaseError, e:
-            
+        except psycopg2.DatabaseError as e:
             if con:
                 con.rollback()
-            
-            print 'Error %s' % e    
+            print('Error %s' % str(e))
             sys.exit(1)
-            
-            
         finally:
-            
             if con:
                 con.close()
 
@@ -190,15 +185,16 @@ class FletaDb():
                 cur = con.cursor()
                 cur.execute(query)
                 con.commit()
-            except psycopg2.DatabaseError, e:
+            except psycopg2.DatabaseError as e:
                 if con:
                     con.rollback()
-                print 'Error %s' % e    
+                print('Error %s' % str(e))
                 sys.exit(1)
             finally:
                 if con:
                     con.close()
-            qList.append(query)
+
+        qList.append(query)
         return qList
     def dicInsert(self,dic,table='monitor.perform_stg_avg'):
         
@@ -216,24 +212,23 @@ class FletaDb():
             val+=(i,)
         valStr = str(val)
         query = 'insert into %s %s values %s;'%(table,colStr,valStr)
-        print query
+        print(query)
         try:
             con = psycopg2.connect(self.conn_string)
             cur = con.cursor()
             cur.execute(query)
             con.commit()
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             if con:
                 con.rollback()
-            print 'Error %s' % e    
-#             sys.exit(1)
+            print('Error %s' % str(e))
+            sys.exit(1)
         finally:
             if con:
                 con.close()
-    
-    
-    
-    def getQList(self,dicList,table='monitor.perform_stg_avg'):
+
+
+def getQList(self,dicList,table='monitor.perform_stg_avg'):
         qList=[]
         for dic in dicList:
             colList= dic.keys()
@@ -251,7 +246,7 @@ class FletaDb():
             query = 'insert into %s %s values %s;'%(table,colStr,valStr)
             qList.append(query)
         return qList
-#         print query
+
     
     
     def dbInsertDicList(self,dicList,table='monotir.pm_auto_isilon_info'):
@@ -270,22 +265,16 @@ class FletaDb():
             con.commit()
              
 #             print "Number of rows updated: %d" % cur.rowcount
-                
-         
-        except psycopg2.DatabaseError, e:
-             
+
+        except psycopg2.DatabaseError as e:
             if con:
                 con.rollback()
-             
-            print 'Error %s' % e    
+            print('Error %s' % str(e))
             sys.exit(1)
-             
-             
         finally:
-             
             if con:
                 con.close()
-        
+
             
     
     
@@ -317,19 +306,13 @@ class FletaDb():
             con.commit()
              
 #             print "Number of rows updated: %d" % cur.rowcount
-                
-         
-        except psycopg2.DatabaseError, e:
-             
+
+        except psycopg2.DatabaseError as e:
             if con:
                 con.rollback()
-             
-            print 'Error %s' % e    
+            print('Error %s' % str(e))
             sys.exit(1)
-             
-             
         finally:
-             
             if con:
                 con.close()
     
@@ -341,15 +324,12 @@ class FletaDb():
             cur = con.cursor()
             cur.execute(query)
             con.commit()
-        except psycopg2.DatabaseError, e:
-            
+        except psycopg2.DatabaseError as e:
             if con:
                 con.rollback()
-            
-            print 'Error %s' % e    
-#             sys.exit(1)
+            print('Error %s' % str(e))
+            sys.exit(1)
         finally:
-            
             if con:
                 con.close()
 
@@ -401,8 +381,8 @@ class FletaDb():
             
             
         except:
-            print "I am unable to connect to the database."
-        
+            print("I am unable to connect to the database.")
+
         # If we are accessing the rows via column name instead of position we 
         # need to add the arguments to conn.cursor.
         
@@ -431,7 +411,7 @@ class FletaDb():
             cur = conn.cursor()
             
         except:
-            print "I am unable to connect to the database."
+            print("I am unable to connect to the database.")
         query="SELECT * FROM vnstatus.vnstatus_%s_status;"%obj
         try:
             cur.execute(query)
@@ -454,17 +434,17 @@ class FletaDb():
         con = psycopg2.connect(self.conn_string)
         cur = con.cursor()
         for esxDic in esxDicList:
-            print esxDic
+            print(esxDic)
             status_date=esxDic['status_date']
             esx_ip = esxDic['esx_ip']
             helth_status=esxDic['ping_status']
             uuid = esxDic['uuid']
-            print esxDic
+            print(esxDic)
             print (status_date,esx_ip,helth_status)
             query="""
             INSERT INTO vnstatus.vnstatus_esx_status (status_date,esx_ip,health_status,uuid,health_type,health_name) values ('%s','%s','%s','%s','PING_CHECK','PING_CHECK')
             """%(status_date,esx_ip,helth_status,uuid)
-            print query
+            print(query)
             cur.execute(query)
         con.commit()
         
@@ -477,11 +457,11 @@ class FletaDb():
             cur.execute(query)
             cnt = cur.fetchone()
             cur.close()
-        except psycopg2.DatabaseError, e:
+        except psycopg2.DatabaseError as e:
             if con:
                 con.rollback()
-            print 'Error %s' % e    
-#             sys.exit(1)
+            print('Error %s' % str(e))
+            sys.exit(1)
         finally:
             if con:
                 con.close()
@@ -516,15 +496,12 @@ class FletaDb():
                 """%(status_date,vm_uuid,vm_ip,vm_name,vm_hostname,vm_power,vc_vcenter,vc_hostserver)
                 cur.execute(query)
             con.commit()
-        except psycopg2.DatabaseError, e:
-            
+        except psycopg2.DatabaseError as e:
             if con:
                 con.rollback()
-            
-            print 'Error %s' % e    
-#             sys.exit(1)
+            print('Error %s' % str(e))
+            sys.exit(1)
         finally:
-            
             if con:
                 con.close()
 
@@ -554,7 +531,7 @@ if __name__ == '__main__':
         '10.10.10.11')
     '''
     vmDicList=[]
-    print vmDicList
+    print(vmDicList)
     vmDicList.append(vmDic)
-    print FletaDb().upsert(vmDicList)
+    print(FletaDb().upsert(vmDicList))
         

@@ -1,6 +1,6 @@
 import os
 import redis
-import ConfigParser
+import configparser
 import ast
 
 class Redis():
@@ -15,7 +15,7 @@ class Redis():
         
 
     def getCfg(self):
-        cfg=ConfigParser.RawConfigParser()
+        cfg=configparser.RawConfigParser()
         cfgFile=os.path.join('config','config.cfg')
         cfg.read(cfgFile)
         return cfg

@@ -1,6 +1,6 @@
 import os
 import redis
-import ConfigParser
+import configparser
 import ast
 
 class Redis():
@@ -15,7 +15,7 @@ class Redis():
         return redis.Redis(host=self.redis_ip,port=6379,password='kes2719!')
 
     def getCfg(self):
-        cfg=ConfigParser.RawConfigParser()
+        cfg=configparser.Rawconfigparser()
         cfgFile=os.path.join('config','config.cfg')
         cfg.read(cfgFile)
         return cfg
@@ -29,7 +29,7 @@ class Redis():
         val=dic['last_val']
         self.r.set(key,val)
     def run(self,resultlist):
-        print 'redis conn'
+        print('redis conn')
         """
         hset '2019-04-02 10:36:03::serial::flag' 'process(storage)' 'value'
         564d2e7e-393a-b454-d7bd-a4688998dc92 2019-05-10 14:54:00+00:00 cpu.usage.average 83 0.0
@@ -68,8 +68,8 @@ class Redis():
             if len(redisInfo) == 3:
                 filed=redisInfo['redis_filed']
                 self.r.hset(key,filed,value)
-                print key,filed,value
-                
+                print(key, filed, value)
+
             else:
                 self.r.set(key,value)
             self.r.expire(key,"259200")
@@ -84,23 +84,23 @@ if __name__=='__main__':
     """
     r=Redis().r
     ret=r.hget("2019-05-15 17::564d2e7e-393a-b454-d7bd-a4688998dc92::Linux_Redhat7.2_60::net::usag","avg_count")
-    print ret,ret==None
-    if ret==None:
+print(ret, ret == None)
+if ret==None:
         r.hset("2019-05-15 17::564d2e7e-393a-b454-d7bd-a4688998dc92::Linux_Redhat7.2_60::net::usag","avg_count","1")
     ret=r.hget("2019-05-15 17::564d2e7e-393a-b454-d7bd-a4688998dc92::Linux_Redhat7.2_60::net::usag","avg_count")
-    print ret
-        
-    ret=r.hget("2019-05-15 17::564d2e7e-393a-b454-d7bd-a4688998dc92::Linux_Redhat7.2_60::net::usag","avg_count")
-    print ret,ret==None
-    if ret==None:
+print(ret)
+
+ret=r.hget("2019-05-15 17::564d2e7e-393a-b454-d7bd-a4688998dc92::Linux_Redhat7.2_60::net::usag","avg_count")
+print(ret, ret == None)
+if ret==None:
         r.hset("2019-05-15 17::564d2e7e-393a-b454-d7bd-a4688998dc92::Linux_Redhat7.2_60::net::usag","avg_count","1")
     ret=r.hget("2019-05-15 17::564d2e7e-393a-b454-d7bd-a4688998dc92::Linux_Redhat7.2_60::net::usag","avg_count")
-    print ret
-    
-    ret=r.keys("2019-05-20 12::564d64b6-b072-fff2-05bf-02280b1de1a5*")
-    print ret
-    for k in ret:
-        print k
-        print r.hget(k,'avg')
+print(ret)
+
+ret=r.keys("2019-05-20 12::564d64b6-b072-fff2-05bf-02280b1de1a5*")
+print(ret)
+for k in ret:
+        print(k)
+        print(r.hget(k, 'avg'))
     
         

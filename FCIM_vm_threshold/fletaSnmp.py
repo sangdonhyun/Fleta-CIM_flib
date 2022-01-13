@@ -8,7 +8,7 @@ Created on 2019. 5. 16.
 import os
 import re
 import sys
-import ConfigParser
+import configparser
 import glob
 import time
 from time import strftime, localtime, time
@@ -24,7 +24,7 @@ class Load():
     
             
     def errSnmpTrapSend(self,errDic):
-        cfg=ConfigParser.RawConfigParser()
+        cfg=configparser.RawConfigParser()
         cfgFile=os.path.join('config','Perform.cfg')
         cfg.read(cfgFile)
 
@@ -99,7 +99,7 @@ class Load():
     def errSnmpTrapSendV3(self,errDic):
 #         print errDic['desc']
         
-        cfg=ConfigParser.RawConfigParser()
+        cfg=configparser.RawConfigParser()
         cfgFile='config\\Perform.cfg'
         
         cfg.read(cfgFile)

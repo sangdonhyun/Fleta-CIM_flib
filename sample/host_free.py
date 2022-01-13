@@ -5,7 +5,7 @@ Created on 2019. 4. 30.
 '''
 import os
 import sys
-import ConfigParser
+import configparser
 from pyVim.connect import SmartConnect, Disconnect
 from pyVmomi import vim
 
@@ -74,6 +74,6 @@ def host_mem(self):
             all_mem = host.hardware.memorySize / 1024 / 1024
             vc_usage_mem += mem_usage
             vc_all_mem += all_mem
-            print 'host:{0} usage mem£º{1}'.format(host.name, mem_usage)
+            print 'host:{0} usage memï¿½ï¿½{1}'.format(host.name, mem_usage)
         print 'VC all usage{0}'.format(vc_usage_mem)
-        print 'VC£º{0}'.format(vc_all_mem)
+        print 'VCï¿½ï¿½{0}'.format(vc_all_mem)

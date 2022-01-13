@@ -12,7 +12,7 @@ import sys
 import os
 import datetime
 import time
-import ConfigParser
+import configparser
 from ftplib import FTP
 import re
 import logging
@@ -115,7 +115,7 @@ class Common():
         cfgFile = os.path.join(self.confDir,'config.cfg')
         if os.path.isfile(cfgFile) == False:
             self.sysOut('cfg file problem')
-        config = ConfigParser.RawConfigParser()
+        config = configparser.RawConfigParser()
         config.read(cfgFile)
         self.server=config.get('server','ip')
         self.user=config.get('server','user')

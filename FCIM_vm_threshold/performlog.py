@@ -7,7 +7,7 @@
 import time
 import os
 import sys
-import ConfigParser
+import configparser
 
 sCurPath = os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])))
 LOG_PATH = sCurPath + "/logs/"
@@ -16,7 +16,7 @@ class Log_(object):
 	def __init__(self):
 		if os.path.isdir(LOG_PATH) == False:
 			os.mkdir(LOG_PATH)
-		self.o_log_code = ConfigParser.ConfigParser()
+		self.o_log_code = configparser.ConfigParser()
 
 
 	def logdata(self, s_file_name, s_file_type, s_code ='', s_refer_val=''):

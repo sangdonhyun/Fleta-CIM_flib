@@ -3,7 +3,7 @@ Created on 2019. 8. 5.
 
 @author: user
 '''
-import ConfigParser
+import configparser
 import os
 from pysnmp.hlapi import *
 print ("It worked!")
@@ -12,7 +12,7 @@ def send_snmp(errDic):
     """
     {'Category': 'Device(00BD4)', 'Src': 'Symm', 'Severity': 'Warning', 'symid': '000292603896', 'Descript': 'Access was attempted to a Not Ready device', 'ErrorNum': '0x003f', 'Time': '2018-06-25 10:15:50', 'Dir': 'FA-8G'}
     """
-    cfg=ConfigParser.RawConfigParser()
+    cfg=configparser.RawConfigParser()
     cfgFile='config\\config.cfg'
     cfg.read(cfgFile)
     print os.path.isfile(cfgFile)

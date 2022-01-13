@@ -8,7 +8,7 @@ Created on 2013. 2. 11.
 import sys
 import os
 import psycopg2
-import ConfigParser
+import configparser
 import codecs
 import locale
 import common
@@ -31,13 +31,13 @@ class FletaDb():
         
     
     def getCfg(self):
-        cfg = ConfigParser.RawConfigParser()
+        cfg = configparser.RawConfigParser()
         cfgFile = os.path.join('config','config.cfg')
         cfg.read(cfgFile)
         return cfg
     
     def getConnStr(self):
-        cfg = ConfigParser.RawConfigParser()
+        cfg = configparser.RawConfigParser()
         cfgFile = os.path.join('config','config.cfg')
         cfg.read(cfgFile)
         try:
